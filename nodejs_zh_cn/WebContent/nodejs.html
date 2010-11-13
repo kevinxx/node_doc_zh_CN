@@ -6114,7 +6114,7 @@ default the <code class="sh_sourceCode">encoding</code> is <code
 to do with higher-level multi-part body encodings that may be used.</p>
 
 <p class="goingmerry">
-请注意：这是一个原始的HTTP消息体，和高级多段消息体编码格式({'Transfer-Encoding':'chunked'})无关。
+请注意：这是一个原始的HTTP消息体，与高级多段消息体编码无关，可用于编码。
 </p>
 
 <p>The first time <code class="sh_sourceCode">response<span
@@ -6126,6 +6126,10 @@ information and the first body to the client. The second time <code
 called, Node assumes you're going to be streaming data, and sends that
 separately. That is, the response is buffered up to the first chunk of
 body.</p>
+
+<p class="goingmerry">
+
+</p>
 
 <h3 id="response-addtrailers-187">response.addTrailers(headers)</h3>
 
