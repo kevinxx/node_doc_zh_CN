@@ -6356,8 +6356,7 @@ request<span class="sh_symbol"><span class="sh_symbol">.</span></span><span
 	for more information.</p>
 	
 	<p class="goingmerry">
-	XXX 第一句不知道怎么翻译。
-	发送一个'Expect'头信息将会发送所有的头信息。
+	如果请求头中包含'Expect',就会立即向服务器发送这个请求头。
 	通常当发送'Expect: 100-continue'的时候，你需对'continue'事件设定一个超时和一个监听器。参见RFC2616第8.2.3节获取更多信息。
 	</p>
 	</li>
@@ -6395,7 +6394,7 @@ usually because the request contained 'Expect: 100-continue'. This is an
 instruction that the client should send the request body.</p>
 
 <p class="goingmerry">
-
+如果请求中包含'Expect: 100-continue'，那么在服务器发送带有'100 Continue'响应时会触此事件，客户端收到响应后会发送消息体。
 </p>
 
 <h3 id="http-createclient-192">http.createClient(port,
@@ -6405,11 +6404,19 @@ host='localhost', secure=false, [credentials])</h3>
 and <code class="sh_sourceCode">host</code> refer to the server to be
 connected to. A stream is not established until a request is issued.</p>
 
+<p class="goingmerry">
+创建一个新的HTTP客户端。'port'和'host'指定了要连接的服务器。当请求发起时就会产生流。
+</p>
+
 <p><code class="sh_sourceCode">secure</code> is an optional boolean
 flag to enable https support and <code class="sh_sourceCode">credentials</code>
 is an optional credentials object from the crypto module, which may hold
 the client's private key, certificate, and a list of trusted CA
 certificates.</p>
+
+<p class="goingmerry">
+
+</p>
 
 <p>If the connection is secure, but no explicit CA certificates are
 passed in the credentials, then node.js will default to the publicly
