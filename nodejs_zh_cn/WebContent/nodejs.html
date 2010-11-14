@@ -6415,13 +6415,19 @@ the client's private key, certificate, and a list of trusted CA
 certificates.</p>
 
 <p class="goingmerry">
-
+'secure'是一个可选的参数，它是一个boolean类型的，它可以决定是否支持https协议。'creadentials'也是一个可选的认证对象，这个对象可以从加密模块（crypto module）中找到，
+这个对象持有客户端的私钥以及一个可信任的CA证书列表。
 </p>
 
 <p>If the connection is secure, but no explicit CA certificates are
 passed in the credentials, then node.js will default to the publicly
 trusted list of CA certificates, as given in
 http://mxr.mozilla.org/mozilla/source/security/nss/lib/ckfw/builtins/certdata.txt</p>
+
+<p class="goingmerry">
+如果使用的是安全连接，但是没有把CA安全证书传给'creadentials'参数，这时node.js就会默认使用公开的可信任的CA证书列表，下面是给出的CA证书列表：
+http://mxr.mozilla.org/mozilla/source/security/nss/lib/ckfw/builtins/certdata.txt
+</p>
 
 <h3 id="client-request-193">client.request(method='GET', path,
 [request_headers])</h3>
@@ -6430,18 +6436,34 @@ http://mxr.mozilla.org/mozilla/source/security/nss/lib/ckfw/builtins/certdata.tx
 	class="sh_sourceCode">http<span class="sh_symbol">.</span>ClientRequest</code>
 instance.</p>
 
+<p class="goingmerry">
+发起一个请求，如果需要，那么会创建一个流。此方法返回一个'http.ClientRequest'的一个实例。
+</p>
+
 <p><code class="sh_sourceCode">method</code> is optional and
 defaults to 'GET' if omitted.</p>
+
+<p class="goingmerry">
+'method'是一个可选的参数，默认为'GET'。
+</p>
 
 <p><code class="sh_sourceCode">request_headers</code> is optional.
 Additional request headers might be added internally by Node. Returns a
 <code class="sh_sourceCode">ClientRequest</code> object.</p>
+
+<p class="goingmerry">
+'request_headers'是一个可选参数。接收除头信息以外，由node添加的信息，此方法返回一个'ClientRequest'对象。
+</p>
 
 <p>Do remember to include the <code class="sh_sourceCode">Content<span
 	class="sh_symbol">-</span>Length</code> header if you plan on sending a body.
 If you plan on streaming the body, perhaps set <code
 	class="sh_sourceCode">Transfer<span class="sh_symbol">-</span>Encoding<span
 	class="sh_symbol">:</span> chunked</code>.</p>
+	
+<p class="goingmerry">
+如果你要发送一个消息体，要记得把'Content-Length'放到消息头中，如果你想让消息体以流的形式发送，需要设置'Transfer-Encoding'为'chunked'。
+</p>
 
 <p><em>NOTE</em>: the request is not complete. This method only
 sends the header of the request. One needs to call <code
@@ -6452,11 +6474,20 @@ but it provides a chance for the user to stream a body to the server
 with <code class="sh_sourceCode">request<span class="sh_symbol">.</span><span
 	class="sh_function">write</span><span class="sh_symbol">()</span></code>.)</p>
 
+<p class="goingmerry">
+请注意：这并不是一个完整的请求，这个方法只是发送请求的消息头。还需要调用'request.end()'来完成这个请求并开始接收响应。
+（这样听起来很费解，但是这样给用户提供了一个使用'request.write()'方法把消息体以流方式发送给服务器的机会。）
+</p>
+
 <h3 id="client-verifypeer-194">client.verifyPeer()</h3>
 
 <p>Returns true or false depending on the validity of the server's
 certificate in the context of the defined or default list of trusted CA
 certificates.</p>
+
+<p class="goingmerry">
+如果服务器安全证书在上下文或默认CA证书列表中能过验证，那么返加true,否则返回false。
+</p>
 
 <h3 id="client-getpeercertificate-195">client.getPeerCertificate()</h3>
 
@@ -6464,13 +6495,21 @@ certificates.</p>
 containing a dictionary with keys for the certificate 'subject',
 'issuer', 'valid_from' and 'valid_to'</p>
 
-<h2 id="http-clientrequest-196">http.ClientRequest</h2>
+<p class="goingmerry">
+返回一个JOSN结构的数据对象，用于描述服务器证书，包含了主题（subject），发行者（issuer），有效来源（valid_from）和有效目标（valid_to）。
+</p>
+
+<h2 id="http-clientrequest-196">http.ClientRequest -- http客户端请求</h2>
 
 <p>This object is created internally and returned from the <code
 	class="sh_sourceCode"><span class="sh_function">request</span><span
 	class="sh_symbol">()</span></code> method of a <code class="sh_sourceCode">http<span
 	class="sh_symbol">.</span>Client</code>. It represents an <em>in-progress</em>
 request whose header has already been sent.</p>
+
+<p class="goingmerry">
+
+</p>
 
 <p>To get the response, add a listener for <code
 	class="sh_sourceCode"><span class="sh_string">'response'</span></code>
