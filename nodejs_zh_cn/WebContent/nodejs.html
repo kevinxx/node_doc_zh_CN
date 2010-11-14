@@ -6128,7 +6128,8 @@ separately. That is, the response is buffered up to the first chunk of
 body.</p>
 
 <p class="goingmerry">
-
+第一次调用'response.write()'方法的时候，它会发送一个缓冲头文件信息和第一个消息体到客户端。第二次'response.write()'被调用时，Node假设你要将数据流分开发送，也就是说
+响应缓冲到第一块消息体
 </p>
 
 <h3 id="response-addtrailers-187">response.addTrailers(headers)</h3>
@@ -6136,13 +6137,25 @@ body.</p>
 <p>This method adds HTTP trailing headers (a header but at the end
 of the message) to the response.</p>
 
+<p class="goingmerry">
+这个方法会添加一个HTTP尾部头信息（一个在报文尾部的头信息）给响应内容。
+</p>
+
 <p>Trailers will <strong>only</strong> be emitted if chunked
 encoding is used for the response; if it is not (e.g., if the request
 was HTTP/1.0), they will be silently discarded.</p>
 
+<p class="goingmerry">
+Trailers事件（request.trailers）只有在响应体使用Chunked编码的时才会触发，如果不是（例如：如果请求是HTTP/1.0），那么它们将会被丢弃。
+</p>
+
 <p>Note that HTTP requires the <code class="sh_sourceCode">Trailer</code>
 header to be sent if you intend to emit trailers, with a list of the
 header fields in its value. E.g.,</p>
+
+<p class="goingmerry">
+需要注意的是，如果你打算把头信息字段列表添加尾部头信息，你可以使用HTTP的<code>Trailer</code>事件。
+</p>
 
 <pre class="sh_sourceCode"><code class="sh_sourceCode">response<span
 	class="sh_symbol"><span class="sh_symbol">.</span></span><span
@@ -6185,6 +6198,10 @@ headers and body has been sent; that server should consider this message
 complete. The method, <code class="sh_sourceCode">response<span
 	class="sh_symbol">.</span><span class="sh_function">end</span><span
 	class="sh_symbol">()</span></code>, MUST be called on each response.</p>
+	
+<p class="goingmerry">
+此方法信号传到服务器端时，服务器认为所有的信息头和信息体都已经发送完。'response.end()'方法必须在每个响应中调用。
+</p>
 
 <p>If <code class="sh_sourceCode">data</code> is specified, it is
 equivalent to calling <code class="sh_sourceCode">response<span
@@ -6194,7 +6211,11 @@ equivalent to calling <code class="sh_sourceCode">response<span
 	class="sh_symbol">.</span><span class="sh_function">end</span><span
 	class="sh_symbol">()</span></code>.</p>
 
-<h2 id="http-client-189">http.Client</h2>
+<p class="goingmerry">
+如果指定了'data'参数，那么等价为调用'response.write(data, encoding)'方法之后再调用'response.end()'方法。
+</p>
+
+<h2 id="http-client-189">http.Client -- HTTP客户端</h2>
 
 <p>An HTTP client is constructed with a server address as its
 argument, the returned handle is then used to issue one or more
@@ -6202,8 +6223,17 @@ requests. Depending on the server connected to, the client might
 pipeline the requests or reestablish the stream after each stream. <em>Currently
 the implementation does not pipeline requests.</em></p>
 
+<p class="goingmerry">
+使用服务器地址做为一个参数来构造一个HTTP客户端，返回的句柄可用来发出一个或多个请求。
+客户端是采用管道处理请求还是重新构造流，这个取决于连接到的服务器。当前实现方式没有使用管道机制处理请求。
+</p>
+
 <p>Example of connecting to <code class="sh_sourceCode">google<span
 	class="sh_symbol">.</span>com</code>:</p>
+	
+<p class="goingmerry">
+一个连接到'google.com'的例子。
+</p>
 
 <pre class="sh_sourceCode"><code class="sh_sourceCode"><span
 	class="sh_keyword"><span class="sh_keyword">var</span></span> http <span
@@ -6292,18 +6322,31 @@ request<span class="sh_symbol"><span class="sh_symbol">.</span></span><span
 
 <p>There are a few special headers that should be noted.</p>
 
+<p class="goingmerry">
+这里有一些特别的头信息是需要注意的。
+</p>
+
 <ul>
 	<li>
 	<p>The 'Host' header is not added by Node, and is usually required
 	by website.</p>
+	<p class="goingmerry">
+	'host'头信息不是由Node添加的，但它是一个网站必须的。
+	</p>
 	</li>
 	<li>
 	<p>Sending a 'Connection: keep-alive' will notify Node that the
 	connection to the server should be persisted until the next request.</p>
+	<p class="goingmerry">
+	发送一个'Connection: keep-alive'将告诉Node,和服务器间的这个连接应该保持连接，直到下一次请求的时候才会断开。
+	</p>
 	</li>
 	<li>
 	<p>Sending a 'Content-length' header will disable the default
 	chunked encoding.</p>
+	<p class="goingmerry">
+	发送一个'Content-length'头信息将会使默认的Chunked编码失效。
+	</p>
 	</li>
 	<li>
 	<p>Sending an 'Expect' header will immediately send the request
@@ -6311,6 +6354,12 @@ request<span class="sh_symbol"><span class="sh_symbol">.</span></span><span
 	set a timeout and listen for the <code class="sh_sourceCode"><span
 		class="sh_keyword">continue</span></code> event. See RFC2616 Section 8.2.3
 	for more information.</p>
+	
+	<p class="goingmerry">
+	XXX 第一句不知道怎么翻译。
+	发送一个'Expect'头信息将会发送所有的头信息。
+	通常当发送'Expect: 100-continue'的时候，你需对'continue'事件设定一个超时和一个监听器。参见RFC2616第8.2.3节获取更多信息。
+	</p>
 	</li>
 </ul>
 
@@ -6324,9 +6373,17 @@ socket<span class="sh_symbol">,</span> head<span class="sh_symbol">)</span></cod
 If this event isn't being listened for, clients receiving an upgrade
 header will have their connections closed.</p>
 
+<p class="goingmerry">
+当服务器响应一个'upgrade'请求时触发。如果这个事件没有被监听，那么客户端接收到一个'upgrade'头信息的时会导致连接关闭。
+</p>
+
 <p>See the description of the <code class="sh_sourceCode">upgrade</code>
 event for <code class="sh_sourceCode">http<span class="sh_symbol">.</span>Server</code>
 for further details.</p>
+
+<p class="goingmerry">
+想要了解'upgrade'事件更多的细节，请参考'http.Server'章节。
+</p>
 
 <h3 id="event-continue-191">Event: 'continue'</h3>
 
@@ -6336,6 +6393,10 @@ for further details.</p>
 <p>Emitted when the server sends a '100 Continue' HTTP response,
 usually because the request contained 'Expect: 100-continue'. This is an
 instruction that the client should send the request body.</p>
+
+<p class="goingmerry">
+
+</p>
 
 <h3 id="http-createclient-192">http.createClient(port,
 host='localhost', secure=false, [credentials])</h3>
