@@ -268,6 +268,12 @@ li {
 	margin: 0 0 10px -30px;
 	padding: 10px;
 }
+.goingmerry {
+	border: 1px solid #666;
+	padding: 4px 8px;
+	background: #333435;
+	font-size: 12px;
+}
 </style>
 <link rel="stylesheet" href="css/sh_vim-dark.css" type="text/css"/>
 </head>
@@ -8248,7 +8254,7 @@ false. Example:</p>
 	class="sh_symbol">)</span></code> to use it.</p>
 
 <p class="goingmerry">
-这个模块提供URL操作和解析的工具方法. 调用<code>require('url')</code>进行引入.
+此模块提供URL操作和解析的工具方法. 调用<code>require('url')</code>进行引入.
 </p>
 
 <p>Parsed URL objects have some or all of the following fields,
@@ -8387,13 +8393,19 @@ would for an anchor tag.</p>
 <p>This module provides utilities for dealing with query strings. It
 provides the following methods:</p>
 
+<p class="goingmerry">此模块提供查询字串处理相关的工具, 其包含以下方法:</p>
+
 <h3 id="querystring-stringify-317">querystring.stringify(obj,
 sep='&amp;', eq='=')</h3>
 
 <p>Serialize an object to a query string. Optionally override the
 default separator and assignment characters.</p>
 
+<p class="goingmerry">序列化一个对象到一个查询字串. 可选的, 允许指定分隔符号和赋值符号.</p>
+
 <p>Example:</p>
+
+<p class="goingmerry">例如:</p>
 
 <pre class="sh_sourceCode"><code class="sh_sourceCode">querystring<span
 	class="sh_symbol"><span class="sh_symbol">.</span></span><span
@@ -8431,7 +8443,11 @@ eq='=')</h3>
 <p>Deserialize a query string to an object. Optionally override the
 default separator and assignment characters.</p>
 
+<p class="goingmerry">反序列化一个查询字串变成一个对象. 可选的, 允许指定分隔符号和赋值符号.</p>
+
 <p>Example:</p>
+
+<p class="goingmerry">例如:</p>
 
 <pre class="sh_sourceCode"><code class="sh_sourceCode">querystring<span
 	class="sh_symbol"><span class="sh_symbol">.</span></span><span
@@ -8456,11 +8472,17 @@ default separator and assignment characters.</p>
 	class="sh_symbol">.</span>stringify</code>, provided so that it could be
 overridden if necessary.</p>
 
+<p class="goingmerry">escape函数被 <code class="sh_sourceCode">querystring<span
+	class="sh_symbol">.</span>stringify</code> 函数所使用, 在必要时可以复写它.</p>
+
 <h3 id="querystring-unescape-320">querystring.unescape</h3>
 
 <p>The unescape function used by <code class="sh_sourceCode">querystring<span
 	class="sh_symbol">.</span>parse</code>, provided so that it could be
 overridden if necessary.</p>
+
+<p class="goingmerry">unescape函数被 <code class="sh_sourceCode">querystring<span
+	class="sh_symbol">.</span>parse</code> 函数所使用, 在必要时可以复写它.</p>
 
 <h2 id="repl-321">REPL</h2>
 
