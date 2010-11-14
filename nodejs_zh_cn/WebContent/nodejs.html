@@ -8308,10 +8308,19 @@ false. Example:</p>
 	class="sh_symbol">(</span><span class="sh_string">'url'</span><span
 	class="sh_symbol">)</span></code> to use it.</p>
 
+<p class="goingmerry">
+这个模块提供URL操作和解析的工具方法. 调用<code>require('url')</code>进行引入.
+</p>
+
 <p>Parsed URL objects have some or all of the following fields,
 depending on whether or not they exist in the URL string. Any parts that
 are not in the URL string will not be in the parsed object. Examples are
 shown for the URL</p>
+
+<p class="goingmerry">
+被解析的URL对象包含部分或全部以下字段, 这取决于URL字符串的组成. 
+URL字符串中不存在的部分将不会出现在被解析的对象中, 以下是一个例子:
+</p>
 
 <p><code class="sh_sourceCode"><span class="sh_string">'http://user:pass@host.com:8080/p/a/t/h?query=string#hash'</span></code></p>
 
@@ -8320,31 +8329,51 @@ shown for the URL</p>
 	<p><code class="sh_sourceCode">href</code></p>
 	<p>The full URL that was originally parsed. Example: <code
 		class="sh_sourceCode"><span class="sh_string">'http://user:pass@host.com:8080/p/a/t/h?query=string#hash'</span></code></p>
+
+	<p class="goingmerry">完整的原始URL. 例如: <code
+		class="sh_sourceCode"><span class="sh_string">'http://user:pass@host.com:8080/p/a/t/h?query=string#hash'</span></code></p>
+
 	</li>
 	<li>
 	<p><code class="sh_sourceCode">protocol</code></p>
 	<p>The request protocol. Example: <code class="sh_sourceCode"><span
 		class="sh_string">'http:'</span></code></p>
+
+	<p class="goingmerry">请求协议. 例如: <code class="sh_sourceCode"><span
+		class="sh_string">'http:'</span></code></p>
+
 	</li>
 	<li>
 	<p><code class="sh_sourceCode">host</code></p>
 	<p>The full host portion of the URL, including port and
 	authentication information. Example: <code class="sh_sourceCode"><span
 		class="sh_string">'user:pass@host.com:8080'</span></code></p>
+		
+	<p class="goingmerry">URL中的完整主机信息, 包括端口和认证信息. 例如: <code class="sh_sourceCode"><span
+		class="sh_string">'user:pass@host.com:8080'</span></code></p>
+	
 	</li>
 	<li>
 	<p><code class="sh_sourceCode">auth</code></p>
 	<p>The authentication information portion of a URL. Example: <code
 		class="sh_sourceCode"><span class="sh_string">'user:pass'</span></code></p>
+
+	<p class="goingmerry">URL中的认证信息部分. 例如: <code
+		class="sh_sourceCode"><span class="sh_string">'user:pass'</span></code></p>
+		
 	</li>
 	<li>
 	<p><code class="sh_sourceCode">hostname</code></p>
 	<p>Just the hostname portion of the host. Example: <code
 		class="sh_sourceCode"><span class="sh_string">'host.com'</span></code></p>
+	<p class="goingmerry">主机名称. 例如: <code
+		class="sh_sourceCode"><span class="sh_string">'host.com'</span></code></p>
 	</li>
 	<li>
 	<p><code class="sh_sourceCode">port</code></p>
 	<p>The port number portion of the host. Example: <code
+		class="sh_sourceCode"><span class="sh_string">'8080'</span></code></p>
+	<p class="goingmerry">主机端口号. 例如: <code
 		class="sh_sourceCode"><span class="sh_string">'8080'</span></code></p>
 	</li>
 	<li>
@@ -8352,11 +8381,15 @@ shown for the URL</p>
 	<p>The path section of the URL, that comes after the host and
 	before the query, including the initial slash if present. Example: <code
 		class="sh_sourceCode"><span class="sh_string">'/p/a/t/h'</span></code></p>
+	<p class="goingmerry">URL中的路径信息, 即在主机信息之后, 查询字串之前, 如果路径不为空则第一个字母总是斜杠(/). 例如: <code
+		class="sh_sourceCode"><span class="sh_string">'/p/a/t/h'</span></code></p>
 	</li>
 	<li>
 	<p><code class="sh_sourceCode">search</code></p>
 	<p>The 'query string' portion of the URL, including the leading
 	question mark. Example: <code class="sh_sourceCode"><span
+		class="sh_string">'?query=string'</span></code></p>
+	<p class="goingmerry">URL中的查询字串信息, 包括问号. 例如: <code class="sh_sourceCode"><span
 		class="sh_string">'?query=string'</span></code></p>
 	</li>
 	<li>
@@ -8367,15 +8400,24 @@ shown for the URL</p>
 		class="sh_cbracket">{</span><span class="sh_string">'query'</span><span
 		class="sh_symbol">:</span><span class="sh_string">'string'</span><span
 		class="sh_cbracket">}</span></code></p>
+	<p class="goingmerry">查询字串中的'params'字符串或是解析后的对象. 例如: <code class="sh_sourceCode"><span
+		class="sh_string">'query=string'</span></code> 或 <code class="sh_sourceCode"><span
+		class="sh_cbracket">{</span><span class="sh_string">'query'</span><span
+		class="sh_symbol">:</span><span class="sh_string">'string'</span><span
+		class="sh_cbracket">}</span></code></p>
 	</li>
 	<li>
 	<p><code class="sh_sourceCode">hash</code></p>
 	<p>The 'fragment' portion of the URL including the pound-sign.
 	Example: <code class="sh_sourceCode"><span class="sh_string">'#hash'</span></code></p>
+	<p class="goingmerry">URL中的'fragment'(也称hash或是bookmark)部分, 包含井号(#).
+	例如: <code class="sh_sourceCode"><span class="sh_string">'#hash'</span></code></p>
 	</li>
 </ul>
 
 <p>The following methods are provided by the URL module:</p>
+
+<p class="goingmerry">URL模块中提供了下列方法:</p>
 
 <h3 id="url-parse-313">url.parse(urlStr, parseQueryString=false)</h3>
 
@@ -8384,14 +8426,22 @@ shown for the URL</p>
 the second argument to also parse the query string using the <code
 	class="sh_sourceCode">querystring</code> module.</p>
 
+<p class="goingmerry">给出一个URL字符串，返回一个URL对象. 如果第二个参数传入 <code
+	class="sh_sourceCode"><span class="sh_keyword">true</span></code> 则将同时使用 <code
+	class="sh_sourceCode">querystring</code> 模块对查询字串进行解析.</p>
+
 <h3 id="url-format-314">url.format(urlObj)</h3>
 
 <p>Take a parsed URL object, and return a formatted URL string.</p>
+
+<p class="goingmerry">传入一个URL对象, 返回格式化后的URL字符串.</p>
 
 <h3 id="url-resolve-315">url.resolve(from, to)</h3>
 
 <p>Take a base URL, and a href URL, and resolve them as a browser
 would for an anchor tag.</p>
+
+<p class="goingmerry">传入一个基础URL和一个目标URL, 将基础URL融合到目标URL, 返回新的URL使之可以用于页面A标签.</p>
 
 <h2 id="query-string-316">Query String</h2>
 
