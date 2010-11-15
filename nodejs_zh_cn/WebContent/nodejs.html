@@ -6552,7 +6552,7 @@ caught.</p>
 
 <p class="goingmerry">
 在'response'事件中，可以为response对象添加监听器，特别是可以给'data'事件添加监听器。需要注意的是，'response'事件会在接收到响应信息体之前被触发，所以不用担心接收不到
-响应体的第一部分。只要是在处理'response'事件过程中增加'data'事件监听器，
+响应体的第一部分。只要是在处理'response'事件过程中添加了'data'事件监听器，那么消息体一定会被捕捉到。
 </p>
 
 <pre class="sh_sourceCode"><code class="sh_sourceCode"><span
@@ -6627,8 +6627,16 @@ request<span class="sh_symbol"><span class="sh_symbol">.</span></span><span
 
 <p>This is a <code class="sh_sourceCode">Writable Stream</code>.</p>
 
+<p class="goingmerry">
+这是一个可写的流。
+</p>
+
 <p>This is an <code class="sh_sourceCode">EventEmitter</code> with
 the following events:</p>
+
+<p class="goingmerry">
+http.ClientRequest是一个事件触发器对象，它具有如下事件。
+</p>
 
 <h3 id="event-response-197">Event 'response'</h3>
 
@@ -6640,6 +6648,10 @@ the following events:</p>
 is emitted only once. The <code class="sh_sourceCode">response</code>
 argument will be an instance of <code class="sh_sourceCode">http<span
 	class="sh_symbol">.</span>ClientResponse</code>.</p>
+	
+<p class="goingmerry">
+当请求得到响应时触发。这个事件在请求响应这个过程中只触发一次。'response'参数接收一个'http.ClientResponse'的实例。
+</p>
 
 <h3 id="request-write-198">request.write(chunk, encoding='utf8')</h3>
 
@@ -6650,12 +6662,24 @@ to use the <code class="sh_sourceCode"><span class="sh_symbol">[</span><span
 <span class="sh_string">'chunked'</span><span class="sh_symbol">]</span></code>
 header line when creating the request.</p>
 
+<p class="goingmerry">
+发送消息体中的一个数据块。用户可以多次调用此方法，把请求对象的消息体以流的形式发送到服务器。在这样的情况下，建议把［'Transfer-Encoding', 'chunked'］放到请求头信息中。
+</p>
+
 <p>The <code class="sh_sourceCode">chunk</code> argument should be
 an array of integers or a string.</p>
+
+<p class="goingmerry">
+'chunk'参数可以是一个整型数组也可以是一个字符串。
+</p>
 
 <p>The <code class="sh_sourceCode">encoding</code> argument is
 optional and only applies when <code class="sh_sourceCode">chunk</code>
 is a string.</p>
+
+<p class="goingmerry">
+'encoding'是一个可选参数，只有在'chunk'是字符串的情况下才使用这个参数。
+</p>
 
 <h3 id="request-end-199">request.end([data], [encoding])</h3>
 
@@ -6665,6 +6689,10 @@ this will send the terminating <code class="sh_sourceCode"><span
 	class="sh_string">'0</span><span class="sh_specialchar">\r\n\r\n</span><span
 	class="sh_string">'</span></code>.</p>
 
+<p class="goingmerry">
+完成发送请求。如果消息体中有部分数据没有发送，那么此方法会把剩下的部分缓冲到流中，如果本次请求是分块的，那么此方法将会发出结束符'0\r\n\r\n'。
+</p>
+
 <p>If <code class="sh_sourceCode">data</code> is specified, it is
 equivalent to calling <code class="sh_sourceCode">request<span
 	class="sh_symbol">.</span><span class="sh_function">write</span><span
@@ -6672,6 +6700,10 @@ equivalent to calling <code class="sh_sourceCode">request<span
 	class="sh_symbol">)</span></code> followed by <code class="sh_sourceCode">request<span
 	class="sh_symbol">.</span><span class="sh_function">end</span><span
 	class="sh_symbol">()</span></code>.</p>
+	
+<p class="goingmerry">
+如果指定了'data'参数，那么此方法就等价于调用'request.write(data, encoding)'之后调用'request.end()'。
+</p>
 
 <h2 id="http-clientresponse-200">http.ClientResponse</h2>
 
