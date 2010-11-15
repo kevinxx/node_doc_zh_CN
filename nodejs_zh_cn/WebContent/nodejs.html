@@ -5788,7 +5788,7 @@ user--and passed as the first argument to a <code class="sh_sourceCode"><span
 the following events:</p>
 
 <p class="goingmerry">
-这是一个'EventEmitter'并拥有如下事件：
+这是一个'EventEmitter'对象，它拥有如下事件：
 </p>
 
 <h3 id="event-data-172">Event: 'data'</h3>
@@ -6631,7 +6631,7 @@ request<span class="sh_symbol"><span class="sh_symbol">.</span></span><span
 这是一个可写的流。
 </p>
 
-<p>This is an <code class="sh_sourceCode">EventEmitter</code> with
+<p>This is an <code class="sh_sourceCode"></code> with
 the following events:</p>
 
 <p class="goingmerry">
@@ -6850,8 +6850,16 @@ download.</p>
 
 <p>This class is used to create a TCP or UNIX server.</p>
 
+<p class="goingmerry">
+这个类将用来创建TCP或是UNIX服务器。
+</p>
+
 <p>Here is an example of a echo server which listens for connections
 on port 8124:</p>
+
+<p class="goingmerry">
+下面举个例子，一个监听8124端口的echo服务器。
+</p>
 
 <pre class="sh_sourceCode"><code class="sh_sourceCode"><span
 	class="sh_keyword"><span class="sh_keyword">var</span></span> net <span
@@ -6940,6 +6948,10 @@ server<span class="sh_symbol"><span class="sh_symbol">.</span></span><span
 	class="sh_string">'/tmp/echo.sock'</span></code>, the last line would just be
 changed to</p>
 
+<p class="goingmerry">
+如果是监听'/tmp/echo.sock'这个socket的话，那么最后一行改成下面这样子。
+</p>
+
 <pre class="sh_sourceCode"><code class="sh_sourceCode">server<span
 	class="sh_symbol"><span class="sh_symbol">.</span></span><span
 	class="sh_function"><span class="sh_function">listen</span></span><span
@@ -6950,15 +6962,23 @@ changed to</p>
 <p>This is an <code class="sh_sourceCode">EventEmitter</code> with
 the following events:</p>
 
+<p class="goingmerry">
+这是一个'EventEmitter'对象，它拥有如下事件：
+</p>
+
 <h3 id="event-connection-212">Event: 'connection'</h3>
 
 <p><code class="sh_sourceCode"><span class="sh_keyword">function</span>
 <span class="sh_symbol">(</span>stream<span class="sh_symbol">)</span> <span
 	class="sh_cbracket">{}</span></code></p>
-
+	
 <p>Emitted when a new connection is made. <code
 	class="sh_sourceCode">stream</code> is an instance of <code
 	class="sh_sourceCode">net<span class="sh_symbol">.</span>Stream</code>.</p>
+
+<p class="goingmerry">
+当一个新的连接创建时触发。'stream'参数是'net.Stream'的一个实例。
+</p>
 
 <h3 id="event-close-213">Event: 'close'</h3>
 
@@ -6967,12 +6987,20 @@ the following events:</p>
 
 <p>Emitted when the server closes.</p>
 
+<p class="goingmerry">
+当一个服务被关闭时触发。
+</p>
+
 <h3 id="net-createserver-214">net.createServer(connectionListener)</h3>
 
 <p>Creates a new TCP server. The <code class="sh_sourceCode">connectionListener</code>
 argument is automatically set as a listener for the <code
 	class="sh_sourceCode"><span class="sh_string">'connection'</span></code>
 event.</p>
+
+<p class="goingmerry">
+创建一个新的TCP服务器。'connectionListener'参数会被自动设置为'connection'事件的监听器
+</p>
 
 <h3 id="server-listen-215">server.listen(port, [host], [callback])</h3>
 
@@ -6981,24 +7009,44 @@ event.</p>
 If the <code class="sh_sourceCode">host</code> is omitted, the server
 will accept connections directed to any IPv4 address (<code
 	class="sh_sourceCode">INADDR_ANY</code>).</p>
+	
+<p class="goingmerry">
+开始从指定的端口（'port'）和主机名'host'接收连接请求。如果没有指定'host'参数，那么服务器将接受任何定向到IPv4地址的连接。
+</p>
 
 <p>This function is asynchronous. The last parameter <code
 	class="sh_sourceCode">callback</code> will be called when the server
 has been bound.</p>
+
+<p class="goingmerry">
+这是一个异步方法。最后一个'callback'参数是一个回调方法，它会在服务器创建后调用。
+</p>
 
 <h3 id="server-listen-216">server.listen(path, [callback])</h3>
 
 <p>Start a UNIX socket server listening for connections on the given
 <code class="sh_sourceCode">path</code>.</p>
 
+<p class="goingmerry">
+创建一个UNIX socket服务器，并监听指定路径上的连接。
+</p>
+
 <p>This function is asynchronous. The last parameter <code
 	class="sh_sourceCode">callback</code> will be called when the server
 has been bound.</p>
+
+<p class="goingmerry">
+这是一个异步方法。最后一个'callback'参数是一个回调方法，它会在服务器创建后调用。
+</p>
 
 <h3 id="server-listenfd-217">server.listenFD(fd)</h3>
 
 <p>Start a server listening for connections on the given file
 descriptor.</p>
+
+<p class="goingmerry">
+创建一个服务器并监听指定文件标识符上的连接。
+</p>
 
 <p>This file descriptor must have already had the <code
 	class="sh_sourceCode"><span class="sh_function">bind</span><span
@@ -7008,6 +7056,10 @@ descriptor.</p>
 	class="sh_number">2</span><span class="sh_symbol">)</span></code> system calls
 invoked on it.</p>
 
+<p class="goingmerry">
+XXX 这句不知道怎么翻译才合理。
+</p>
+
 <h3 id="server-close-218">server.close()</h3>
 
 <p>Stops the server from accepting new connections. This function is
@@ -7015,14 +7067,26 @@ asynchronous, the server is finally closed when the server emits a <code
 	class="sh_sourceCode"><span class="sh_string">'close'</span></code>
 event.</p>
 
+<p class="goingmerry">
+停止服务器，这个方法是异步的，服务器触发'close'事件时才会完全关闭。
+</p>
+
 <h3 id="server-maxconnections-219">server.maxConnections</h3>
 
 <p>Set this property to reject connections when the server's
 connection count gets high.</p>
 
+<p class="goingmerry">
+设置服务器的最大连接数，当超过设置值时连接将会被拒绝。
+</p>
+
 <h3 id="server-connections-220">server.connections</h3>
 
 <p>The number of concurrent connections on the server.</p>
+
+<p class="goingmerry">
+返回服务器当前的连接数。
+</p>
 
 <h2 id="net-isip-221">net.isIP</h2>
 
