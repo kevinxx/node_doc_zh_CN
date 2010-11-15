@@ -6846,7 +6846,7 @@ download.</p>
 返回所有response所属的'http.Client'的引用。
 </p>
 
-<h2 id="net-server-211">net.Server -- 网络服务器模块 翻译中。。。</h2>
+<h2 id="net-server-211">net.Server -- 网络服务器模块</h2>
 
 <p>This class is used to create a TCP or UNIX server.</p>
 
@@ -7118,7 +7118,7 @@ returns false.</p>
 如果输入的IP地址的版本为6则返回真，否则返回假。
 </p>
 
-<h2 id="net-stream-225">net.Stream</h2>
+<h2 id="net-stream-225">net.Stream -- 网络传输流模块</h2>
 
 <p>This object is an abstraction of of a TCP or UNIX socket. <code
 	class="sh_sourceCode">net<span class="sh_symbol">.</span>Stream</code>
@@ -7129,8 +7129,17 @@ they can be created by Node and passed to the user through the <code
 	class="sh_sourceCode"><span class="sh_string">'connection'</span></code>
 event of a server.</p>
 
+<p class="goingmerry">
+这个对象是对TCP或UNIX套接字的抽象。'net.Stream'实例实现了一个全双工的流接口。
+它们可以由用户创建并作为客户端(和Connect())来使用,也可以通过Node来建立，Node创建服务器并通过'connection'事件将流传给用户。
+</p>
+
 <p><code class="sh_sourceCode">net<span class="sh_symbol">.</span>Stream</code>
 instances are EventEmitters with the following events:</p>
+
+<p class="goingmerry">
+'net.Stream'实例可以触发以下事件：
+</p>
 
 <h3 id="event-connect-226">Event: 'connect'</h3>
 
@@ -7141,22 +7150,30 @@ instances are EventEmitters with the following events:</p>
 <p>Emitted when a stream connection successfully is established. See
 <code class="sh_sourceCode"><span class="sh_function">connect</span><span
 	class="sh_symbol">()</span></code>.</p>
+	
+<p class="goingmerry">
+当一条流连接成功建立时触发。详情请查看'connect()'。
+</p>
 
 <h3 id="event-secure-227">Event: 'secure'</h3>
 
 <p><code class="sh_sourceCode"><span class="sh_keyword">function</span>
 <span class="sh_symbol">()</span> <span class="sh_cbracket">{</span> <span
 	class="sh_cbracket">}</span></code></p>
-
+	
 <p>Emitted when a stream connection successfully establishes an SSL
 handshake with its peer.</p>
+
+<p class="goingmerry">
+当一条流连接成功与它的对等端进行SSL握手时触发。
+</p>
 
 <h3 id="event-data-228">Event: 'data'</h3>
 
 <p><code class="sh_sourceCode"><span class="sh_keyword">function</span>
 <span class="sh_symbol">(</span>data<span class="sh_symbol">)</span> <span
 	class="sh_cbracket">{</span> <span class="sh_cbracket">}</span></code></p>
-
+	
 <p>Emitted when data is received. The argument <code
 	class="sh_sourceCode">data</code> will be a <code class="sh_sourceCode">Buffer</code>
 or <code class="sh_sourceCode"><span class="sh_predef_func">String</span></code>.
@@ -7164,6 +7181,10 @@ Encoding of data is set by <code class="sh_sourceCode">stream<span
 	class="sh_symbol">.</span><span class="sh_function">setEncoding</span><span
 	class="sh_symbol">()</span></code>. (See the section on <code
 	class="sh_sourceCode">Readable Stream</code> for more information.)</p>
+
+<p class="goingmerry">
+当接收到数据时触发此函数。'data'参数可以是一个Buffer也可以是一个字符串。可以使用'stream.setEncoding()'来设置数据的字符集编码。（更多信息请查看Readable Stream）
+</p>
 
 <h3 id="event-end-229">Event: 'end'</h3>
 
@@ -7177,6 +7198,10 @@ will be <code class="sh_sourceCode"><span class="sh_string">'writeOnly'</span></
 One should probably just call <code class="sh_sourceCode">stream<span
 	class="sh_symbol">.</span><span class="sh_function">end</span><span
 	class="sh_symbol">()</span></code> when this event is emitted.</p>
+	
+<p class="goingmerry">
+当流的另外一端发送一个FIN数据包时触发。在这个事件触发之后准备状态就会变为'writeOnly'。当这个事件触发后只能是调用'stream.end()'方法了。
+</p>
 
 <h3 id="event-timeout-230">Event: 'timeout'</h3>
 
@@ -7188,9 +7213,17 @@ One should probably just call <code class="sh_sourceCode">stream<span
 notify that the stream has been idle. The user must manually close the
 connection.</p>
 
+<p class="goingmerry">
+如果流长时间不活动，超时的时候就会触发此函数。这只是通知该流已闲置，用户必须手动关闭连接。
+</p>
+
 <p>See also: <code class="sh_sourceCode">stream<span
 	class="sh_symbol">.</span><span class="sh_function">setTimeout</span><span
 	class="sh_symbol">()</span></code></p>
+	
+<p class="goingmerry">
+参考'stream.setTimeout()'方法。
+</p>
 
 <h3 id="event-drain-231">Event: 'drain'</h3>
 
@@ -7201,11 +7234,19 @@ connection.</p>
 <p>Emitted when the write buffer becomes empty. Can be used to
 throttle uploads.</p>
 
+<p class="goingmerry">
+当写入缓冲区变空时触发此函数。常用来控制上传。
+</p>
+
 <h3 id="event-error-232">Event: 'error'</h3>
 
 <p><code class="sh_sourceCode"><span class="sh_keyword">function</span>
 <span class="sh_symbol">(</span>exception<span class="sh_symbol">)</span>
 <span class="sh_cbracket">{</span> <span class="sh_cbracket">}</span></code></p>
+
+<p class="goingmerry">
+
+</p>
 
 <p>Emitted when an error occurs. The <code class="sh_sourceCode"><span
 	class="sh_string">'close'</span></code> event will be called directly
