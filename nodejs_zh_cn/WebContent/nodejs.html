@@ -7088,7 +7088,7 @@ connection count gets high.</p>
 返回服务器当前的连接数。
 </p>
 
-<h2 id="net-isip-221">net.isIP</h2>
+<h2 id="net-isip-221">net.isIP -- 判断IP模块</h2>
 
 <h3 id="net-isip-222">net.isIP(input)</h3>
 
@@ -7096,15 +7096,27 @@ connection count gets high.</p>
 returns 4 for IP version 4 addresses, and returns 6 for IP version 6
 addresses.</p>
 
+<p class="goingmerry">
+测试输入的IP地址，无效字符串返回0，IP地址版本为4则返回4，IP地址版本为6则返回6
+</p>
+
 <h3 id="net-isipv4-223">net.isIPv4(input)</h3>
 
 <p>Returns true if input is a version 4 IP address, otherwise
 returns false.</p>
 
+<p class="goingmerry">
+如果输入的IP地址的版本为4则返回真，否则返回假。
+</p>
+
 <h3 id="net-isipv6-224">net.isIPv6(input)</h3>
 
 <p>Returns true if input is a version 6 IP address, otherwise
 returns false.</p>
+
+<p class="goingmerry">
+如果输入的IP地址的版本为6则返回真，否则返回假。
+</p>
 
 <h2 id="net-stream-225">net.Stream</h2>
 
