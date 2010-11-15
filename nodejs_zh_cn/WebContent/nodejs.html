@@ -6508,7 +6508,7 @@ containing a dictionary with keys for the certificate 'subject',
 request whose header has already been sent.</p>
 
 <p class="goingmerry">
-
+使用'request()'的'http.Client'方法创建一个http.ClientRequest对象并返回。它表示一个请求正在进行中，并且消息头已经发送。
 </p>
 
 <p>To get the response, add a listener for <code
@@ -6519,6 +6519,11 @@ object when the response headers have been received. The <code
 	class="sh_sourceCode"><span class="sh_string">'response'</span></code>
 event is executed with one argument which is an instance of <code
 	class="sh_sourceCode">http<span class="sh_symbol">.</span>ClientResponse</code>.</p>
+	
+<p class="goingmerry">
+为了能得到响应，给请求对象添加了一个'response'监听器。当请求对象收到响应头时触发'response'事件。
+'response'事件在执行时接收一个参数，此参数是'http.ClientResponse'的一个实例。
+</p>
 
 <p>During the <code class="sh_sourceCode"><span
 	class="sh_string">'response'</span></code> event, one can add listeners to the
@@ -6532,6 +6537,11 @@ to catch the first part of the body. As long as a listener for <code
 added during the <code class="sh_sourceCode"><span
 	class="sh_string">'response'</span></code> event, the entire body will be
 caught.</p>
+
+<p class="goingmerry">
+在'response'事件中，可以为response对象添加监听器，特别是可以给'data'事件添加监听器。需要注意的是，'response'事件会在接收到响应信息体之前被触发，所以不用担心接收不到
+响应体的第一部分。只要是在处理'response'事件过程中增加'data'事件监听器，
+</p>
 
 <pre class="sh_sourceCode"><code class="sh_sourceCode"><span
 	class="sh_comment"><span class="sh_comment">// Good</span></span>
