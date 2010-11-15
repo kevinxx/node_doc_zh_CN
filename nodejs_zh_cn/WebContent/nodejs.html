@@ -6705,15 +6705,23 @@ equivalent to calling <code class="sh_sourceCode">request<span
 如果指定了'data'参数，那么此方法就等价于调用'request.write(data, encoding)'之后调用'request.end()'。
 </p>
 
-<h2 id="http-clientresponse-200">http.ClientResponse -- http客户端响应 翻译中。。。</h2>
+<h2 id="http-clientresponse-200">http.ClientResponse -- http客户端响应</h2>
 
 <p>This object is created when making a request with <code
 	class="sh_sourceCode">http<span class="sh_symbol">.</span>Client</code>.
 It is passed to the <code class="sh_sourceCode"><span
 	class="sh_string">'response'</span></code> event of the request object.</p>
 
+<p class="goingmerry">
+当使用'http.Client'发起一个请求时，此对象被创建，它会以参数的形式传递到request对象的'response'事件中。
+</p>
+
 <p>The response implements the <code class="sh_sourceCode">Readable
 Stream</code> interface.</p>
+
+<p class="goingmerry">
+这个response对象实现了只读流的接口。
+</p>
 
 <h3 id="event-data-201">Event: 'data'</h3>
 
@@ -6722,6 +6730,10 @@ Stream</code> interface.</p>
 	class="sh_cbracket">{}</span></code></p>
 
 <p>Emitted when a piece of the message body is received.</p>
+
+<p class="goingmerry">
+当接收到消息体时触发此事件。
+</p>
 
 <pre class="sh_sourceCode"><code class="sh_sourceCode">Example<span
 	class="sh_symbol"><span class="sh_symbol">:</span></span> A chunk of the body is given as the single
@@ -6735,7 +6747,12 @@ body chunk a <span class="sh_predef_func"><span
 `response<span class="sh_symbol"><span class="sh_symbol">.</span></span><span
 	class="sh_function"><span class="sh_function">setBodyEncoding</span></span><span
 	class="sh_symbol"><span class="sh_symbol">()</span></span>`<span
-	class="sh_symbol"><span class="sh_symbol">.</span></span></code></pre>
+	class="sh_symbol"><span class="sh_symbol">.</span></span></code>
+	</pre>
+	
+<p class="goingmerry">
+例子：消息体的一块数据传入此方法，此数据块被解码为字符串。消息体编码可以能过'response.setBodyEncoding()'来设置。
+</p>
 
 <h3 id="event-end-202">Event: 'end'</h3>
 
@@ -6745,10 +6762,18 @@ body chunk a <span class="sh_predef_func"><span
 <p>Emitted exactly once for each message. No arguments. After
 emitted no other events will be emitted on the response.</p>
 
+<p class="goingmerry">
+完整接收到消息后触发此事件。它没有参数，在一次响应中'end'事件是最后被触发的事件。
+</p>
+
 <h3 id="response-statuscode-203">response.statusCode</h3>
 
 <p>The 3-digit HTTP response status code. E.G. <code
 	class="sh_sourceCode"><span class="sh_number">404</span></code>.</p>
+	
+<p class="goingmerry">
+一个三位数字表示HTTP响应状态，比如404。
+</p>
 
 <h3 id="response-httpversion-204">response.httpVersion</h3>
 
@@ -6758,15 +6783,27 @@ emitted no other events will be emitted on the response.</p>
 <code class="sh_sourceCode">response<span class="sh_symbol">.</span>httpVersionMajor</code>
 is the first integer and <code class="sh_sourceCode">response<span
 	class="sh_symbol">.</span>httpVersionMinor</code> is the second.</p>
+	
+<p class="goingmerry">
+获得连接到服务器的HTTP协议版本。可能是'1.1'或是'1.0'.'response.httpVersionMajor'表示第一个整数，'response.httpVersionMinor'表示第二个。
+</p>
 
 <h3 id="response-headers-205">response.headers</h3>
 
 <p>The response headers object.</p>
 
+<p class="goingmerry">
+响应信息头对象。
+</p>
+
 <h3 id="response-trailers-206">response.trailers</h3>
 
 <p>The response trailers object. Only populated after the 'end'
 event.</p>
+
+<p class="goingmerry">
+响应中的'trailers'对象。在'end'事件之后被插入到response中。
+</p>
 
 <h3 id="response-setencoding-207">response.setEncoding(encoding=null)</h3>
 
@@ -6778,20 +6815,36 @@ Defaults to <code class="sh_sourceCode"><span class="sh_keyword">null</span></co
 which means that the <code class="sh_sourceCode"><span
 	class="sh_string">'data'</span></code> event will emit a <code
 	class="sh_sourceCode">Buffer</code> object..</p>
+	
+<p class="goingmerry">
+设置响应消息体的编码。可以是'utf8','ascii'或是'base64'。默认情况下为'null'，此时意味着'data'事件将使用一个'Buffer'对象。
+</p>
 
 <h3 id="response-pause-208">response.pause()</h3>
 
 <p>Pauses response from emitting events. Useful to throttle back a
 download.</p>
 
+<p class="goingmerry">
+暂停响应事件触发，通常用于控制下载。
+</p>
+
 <h3 id="response-resume-209">response.resume()</h3>
 
 <p>Resumes a paused response.</p>
+
+<p class="goingmerry">
+恢复一个暂停的响应。
+</p>
 
 <h3 id="response-client-210">response.client</h3>
 
 <p>A reference to the <code class="sh_sourceCode">http<span
 	class="sh_symbol">.</span>Client</code> that this response belongs to.</p>
+	
+<p class="goingmerry">
+返回所有response所属的'http.Client'的引用。
+</p>
 
 <h2 id="net-server-211">net.Server</h2>
 
