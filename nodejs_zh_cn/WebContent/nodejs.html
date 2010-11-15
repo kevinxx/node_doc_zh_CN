@@ -268,6 +268,18 @@ li {
 	margin: 0 0 10px -30px;
 	padding: 10px;
 }
+.goingmerry {
+	border: 1px solid #666;
+	padding: 4px 8px;
+	background: #333435;
+	font-size: 12px;
+}
+#man .goingmerry .annotation {
+	display: block;
+	text-decoration: none;
+	color: #899;
+	border: none;
+}
 </style>
 <link rel="stylesheet" href="css/sh_vim-dark.css" type="text/css"/>
 </head>
@@ -8104,11 +8116,21 @@ you can access it with <code class="sh_sourceCode"><span
 	class="sh_function">require</span><span class="sh_symbol">(</span><span
 	class="sh_string">'assert'</span><span class="sh_symbol">)</span></code>.</p>
 
+<p class="goingmerry">此模块用于编写单元测试, 通过 <code class="sh_sourceCode"><span
+	class="sh_function">require</span><span class="sh_symbol">(</span><span
+	class="sh_string">'assert'</span><span class="sh_symbol">)</span></code> 来使用.</p>
+
 <h3 id="assert-fail-293">assert.fail(actual, expected, message,
 operator)</h3>
 
 <p>Tests if <code class="sh_sourceCode">actual</code> is equal to <code
 	class="sh_sourceCode">expected</code> using the operator provided.</p>
+
+<p class="goingmerry">抛出一个 <code class="sh_sourceCode">actual</code> 与 <code
+	class="sh_sourceCode">expected</code> 不匹配的断言错误(AssertionError), 
+	其中匹配运算符由 <code class="sh_sourceCode">operator</code> 指定.
+	<em class="annotation">* 喵的, 这里英文说明有问题, 见v0.2.4版源码lib/assert.js第79行fail函数 --译者注</em>
+	</p>
 
 <h3 id="assert-ok-294">assert.ok(value, [message])</h3>
 
@@ -8119,10 +8141,22 @@ operator)</h3>
 	class="sh_keyword">true</span><span class="sh_symbol">,</span> value<span
 	class="sh_symbol">,</span> message<span class="sh_symbol">);</span></code></p>
 
+<p class="goingmerry">测试 <code class="sh_sourceCode"><span
+	class="sh_keyword">value</span></code> 是否为 <code class="sh_sourceCode"><span
+	class="sh_keyword">true</span></code> , 它与调用 <code
+	class="sh_sourceCode">assert<span class="sh_symbol">.</span><span
+	class="sh_function">equal</span><span class="sh_symbol">(</span><span
+	class="sh_keyword">true</span><span class="sh_symbol">,</span> value<span
+	class="sh_symbol">,</span> message<span class="sh_symbol">);</span></code> 效果相同.</p>
+
 <h3 id="assert-equal-295">assert.equal(actual, expected, [message])</h3>
 
 <p>Tests shallow, coercive equality with the equal comparison
 operator ( <code class="sh_sourceCode"><span class="sh_symbol">==</span></code>
+).</p>
+
+<p class="goingmerry">浅度相等测试, 直接使用等于运算符进行比较
+ ( <code class="sh_sourceCode"><span class="sh_symbol">==</span></code>
 ).</p>
 
 <h3 id="assert-notequal-296">assert.notEqual(actual, expected,
@@ -8132,21 +8166,33 @@ operator ( <code class="sh_sourceCode"><span class="sh_symbol">==</span></code>
 comparison operator ( <code class="sh_sourceCode"><span
 	class="sh_symbol">!=</span></code> ).</p>
 
+<p class="goingmerry">浅度不相等测试, 直接使用不等于运算符进行比较
+ ( <code class="sh_sourceCode"><span
+	class="sh_symbol">!=</span></code> ).</p>
+
 <h3 id="assert-deepequal-297">assert.deepEqual(actual, expected,
 [message])</h3>
 
 <p>Tests for deep equality.</p>
+
+<p class="goingmerry">深度相等测试.</p>
 
 <h3 id="assert-notdeepequal-298">assert.notDeepEqual(actual,
 expected, [message])</h3>
 
 <p>Tests for any deep inequality.</p>
 
+<p class="goingmerry">深度不相等测试.</p>
+
 <h3 id="assert-strictequal-299">assert.strictEqual(actual,
 expected, [message])</h3>
 
 <p>Tests strict equality, as determined by the strict equality
 operator ( <code class="sh_sourceCode"><span class="sh_symbol">===</span></code>
+)</p>
+
+<p class="goingmerry">严格相等测试, 使用严格等于运算符进行比较
+ ( <code class="sh_sourceCode"><span class="sh_symbol">===</span></code>
 )</p>
 
 <h3 id="assert-notstrictequal-300">assert.notStrictEqual(actual,
@@ -8156,10 +8202,16 @@ expected, [message])</h3>
 operator ( <code class="sh_sourceCode"><span class="sh_symbol">!==</span></code>
 )</p>
 
+<p class="goingmerry">严格不相等测试, 使用严格不等于运算符进行比较
+ ( <code class="sh_sourceCode"><span class="sh_symbol">!==</span></code>
+)</p>
+
 <h3 id="assert-throws-301">assert.throws(block, [error], [message])</h3>
 
 <p>Expects <code class="sh_sourceCode">block</code> to throw an
 error.</p>
+
+<p class="goingmerry">期望 <code class="sh_sourceCode">block</code> 函数被执行时将抛出指定(或任意)异常.</p>
 
 <h3 id="assert-doesnotthrow-302">assert.doesNotThrow(block,
 [error], [message])</h3>
@@ -8167,11 +8219,21 @@ error.</p>
 <p>Expects <code class="sh_sourceCode">block</code> not to throw an
 error.</p>
 
+<p class="goingmerry">期望 <code class="sh_sourceCode">block</code> 函数被执行时将不会抛出指定(或任意)异常.</p>
+
 <h3 id="assert-iferror-303">assert.ifError(value)</h3>
 
 <p>Tests if value is not a false value, throws if it is a true
 value. Useful when testing the first argument, <code
 	class="sh_sourceCode">error</code> in callbacks.</p>
+
+<p class="goingmerry">测试value是否为真, 如果value为真值则将value作为异常抛出. 
+常用于测试第一个参数, 回调函数中的 <code
+	class="sh_sourceCode">error</code>.
+	<em class="annotation">* 喵的, 这段说明英文太龌龊了, 没看懂得童鞋请阅读以下代码
+	assert.ifError = function (err) { if (err) {throw err;}};
+	 --译者注</em>
+	</p>
 
 <h2 id="path-304">Path</h2>
 
@@ -8181,11 +8243,20 @@ value. Useful when testing the first argument, <code
 	class="sh_symbol">)</span></code> to use it. It provides the following
 methods:</p>
 
+<p class="goingmerry">此模块提供文件路径处理相关的工具方法. 通过 <code
+	class="sh_sourceCode"><span class="sh_function">require</span><span
+	class="sh_symbol">(</span><span class="sh_string">'path'</span><span
+	class="sh_symbol">)</span></code> 来使用. 此模块提供以下方法:</p>
+
 <h3 id="path-join-305">path.join([path1], [path2], [...])</h3>
 
 <p>Join all arguments together and resolve the resulting path.</p>
 
+<p class="goingmerry">将所有参数拼接并返回融合完成后的路径.</p>
+
 <p>Example:</p>
+
+<p class="goingmerry">例如:</p>
 
 <pre class="sh_sourceCode"><code class="sh_sourceCode">node<span
 	class="sh_symbol"><span class="sh_symbol">&gt;</span></span> <span
@@ -8214,7 +8285,13 @@ methods:</p>
 	class="sh_sourceCode"><span class="sh_string">'..'</span></code> and <code
 	class="sh_sourceCode"><span class="sh_string">'.'</span></code> parts.</p>
 
+<p class="goingmerry">标准化(Normalize)一个路径数组, 处理掉其中包含的 <code
+	class="sh_sourceCode"><span class="sh_string">'..'</span></code> 和 <code
+	class="sh_sourceCode"><span class="sh_string">'.'</span></code> 部分.</p>
+
 <p>Example:</p>
+
+<p class="goingmerry">例如:</p>
 
 <pre class="sh_sourceCode"><code class="sh_sourceCode">path<span
 	class="sh_symbol"><span class="sh_symbol">.</span></span><span
@@ -8253,7 +8330,13 @@ methods:</p>
 	class="sh_sourceCode"><span class="sh_string">'..'</span></code> and <code
 	class="sh_sourceCode"><span class="sh_string">'.'</span></code> parts.</p>
 
+<p class="goingmerry">标准化(Normalize)一个路径字符串, 处理掉其中包含的 <code
+	class="sh_sourceCode"><span class="sh_string">'..'</span></code> 和 <code
+	class="sh_sourceCode"><span class="sh_string">'.'</span></code> 部分.</p>
+
 <p>Example:</p>
+
+<p class="goingmerry">例如:</p>
 
 <pre class="sh_sourceCode"><code class="sh_sourceCode">path<span
 	class="sh_symbol"><span class="sh_symbol">.</span></span><span
@@ -8269,7 +8352,12 @@ methods:</p>
 <p>Return the directory name of a path. Similar to the Unix <code
 	class="sh_sourceCode">dirname</code> command.</p>
 
+<p class="goingmerry">返回指定路径的目录名称. 功能与Unix系统中的 <code
+	class="sh_sourceCode">dirname</code> 命令类似.</p>
+
 <p>Example:</p>
+
+<p class="goingmerry">例如:</p>
 
 <pre class="sh_sourceCode"><code class="sh_sourceCode">path<span
 	class="sh_symbol"><span class="sh_symbol">.</span></span><span
@@ -8285,7 +8373,12 @@ methods:</p>
 <p>Return the last portion of a path. Similar to the Unix <code
 	class="sh_sourceCode">basename</code> command.</p>
 
+<p class="goingmerry">返回指定路径的最后部分. 与Unix系统中的 <code
+	class="sh_sourceCode">basename</code> 命令类似.</p>
+
 <p>Example:</p>
+
+<p class="goingmerry">例如:</p>
 
 <pre class="sh_sourceCode"><code class="sh_sourceCode">path<span
 	class="sh_symbol"><span class="sh_symbol">.</span></span><span
@@ -8313,6 +8406,10 @@ in the last portion of the path. If there is no '.' in the last portion
 of the path or the only '.' is the first character, then it returns an
 empty string. Examples:</p>
 
+<p class="goingmerry">返回指定路径的扩展名. 在路径的最后部分中, 最后一个 '.'
+之后的所有字符将被返回. 如果在路径的最后部分中不存在 '.' 或 '.' 
+是最后部分的第一个字符, 则返回一个空字符串. 例如:</p>
+
 <pre class="sh_sourceCode"><code class="sh_sourceCode">path<span
 	class="sh_symbol"><span class="sh_symbol">.</span></span><span
 	class="sh_function"><span class="sh_function">extname</span></span><span
@@ -8335,6 +8432,10 @@ path<span class="sh_symbol"><span class="sh_symbol">.</span></span><span
 <p>Test whether or not the given path exists. Then, call the <code
 	class="sh_sourceCode">callback</code> argument with either true or
 false. Example:</p>
+
+<p class="goingmerry">测试指定路径是否存在. 不论成功与否都将调用给出的 <code
+	class="sh_sourceCode">callback</code> 函数(如果有的话), 
+	callback函数接收一个参数标识是否成功. 例如:</p>
 
 <pre class="sh_sourceCode"><code class="sh_sourceCode">path<span
 	class="sh_symbol"><span class="sh_symbol">.</span></span><span
@@ -8365,7 +8466,7 @@ false. Example:</p>
 	class="sh_symbol">)</span></code> to use it.</p>
 
 <p class="goingmerry">
-这个模块提供URL操作和解析的工具方法. 调用<code>require('url')</code>进行引入.
+此模块提供URL操作和解析的工具方法. 调用<code>require('url')</code>进行引入.
 </p>
 
 <p>Parsed URL objects have some or all of the following fields,
@@ -8504,13 +8605,19 @@ would for an anchor tag.</p>
 <p>This module provides utilities for dealing with query strings. It
 provides the following methods:</p>
 
+<p class="goingmerry">此模块提供查询字串处理相关的工具, 其包含以下方法:</p>
+
 <h3 id="querystring-stringify-317">querystring.stringify(obj,
 sep='&amp;', eq='=')</h3>
 
 <p>Serialize an object to a query string. Optionally override the
 default separator and assignment characters.</p>
 
+<p class="goingmerry">序列化一个对象到一个查询字串. 可选的, 允许指定分隔符号和赋值符号.</p>
+
 <p>Example:</p>
+
+<p class="goingmerry">例如:</p>
 
 <pre class="sh_sourceCode"><code class="sh_sourceCode">querystring<span
 	class="sh_symbol"><span class="sh_symbol">.</span></span><span
@@ -8548,7 +8655,11 @@ eq='=')</h3>
 <p>Deserialize a query string to an object. Optionally override the
 default separator and assignment characters.</p>
 
+<p class="goingmerry">反序列化一个查询字串变成一个对象. 可选的, 允许指定分隔符号和赋值符号.</p>
+
 <p>Example:</p>
+
+<p class="goingmerry">例如:</p>
 
 <pre class="sh_sourceCode"><code class="sh_sourceCode">querystring<span
 	class="sh_symbol"><span class="sh_symbol">.</span></span><span
@@ -8573,11 +8684,17 @@ default separator and assignment characters.</p>
 	class="sh_symbol">.</span>stringify</code>, provided so that it could be
 overridden if necessary.</p>
 
+<p class="goingmerry">escape函数被 <code class="sh_sourceCode">querystring<span
+	class="sh_symbol">.</span>stringify</code> 函数所使用, 在必要时可以复写它.</p>
+
 <h3 id="querystring-unescape-320">querystring.unescape</h3>
 
 <p>The unescape function used by <code class="sh_sourceCode">querystring<span
 	class="sh_symbol">.</span>parse</code>, provided so that it could be
 overridden if necessary.</p>
+
+<p class="goingmerry">unescape函数被 <code class="sh_sourceCode">querystring<span
+	class="sh_symbol">.</span>parse</code> 函数所使用, 在必要时可以复写它.</p>
 
 <h2 id="repl-321">REPL</h2>
 
