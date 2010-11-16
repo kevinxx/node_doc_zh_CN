@@ -5709,7 +5709,7 @@ If the hostname is omitted, the server will accept connections directed
 to any IPv4 address (<code class="sh_sourceCode">INADDR_ANY</code>).</p>
 
 <p class="goingmerry">
-通过指定的端口和主机名接受连接。如果主机名被省略，那么服务器将接受定向到任何IPv4地址（INADDR_ANY的）的连接。
+通过指定的端口和主机接受连接。如果主机被省略，那么服务器将接受定向到任何IPv4地址（INADDR_ANY的）的连接。
 </p>
 
 <p>To listen to a unix socket, supply a filename instead of port and
@@ -7011,7 +7011,7 @@ will accept connections directed to any IPv4 address (<code
 	class="sh_sourceCode">INADDR_ANY</code>).</p>
 	
 <p class="goingmerry">
-开始从指定的端口（'port'）和主机名'host'接收连接请求。如果没有指定'host'参数，那么服务器将接受任何定向到IPv4地址的连接。
+开始从指定的端口（'port'）和主机'host'接收连接请求。如果没有指定'host'参数，那么服务器将接受任何定向到IPv4地址的连接。
 </p>
 
 <p>This function is asynchronous. The last parameter <code
@@ -7244,13 +7244,13 @@ throttle uploads.</p>
 <span class="sh_symbol">(</span>exception<span class="sh_symbol">)</span>
 <span class="sh_cbracket">{</span> <span class="sh_cbracket">}</span></code></p>
 
-<p class="goingmerry">
-
-</p>
-
 <p>Emitted when an error occurs. The <code class="sh_sourceCode"><span
 	class="sh_string">'close'</span></code> event will be called directly
 following this event.</p>
+
+<p class="goingmerry">
+当发生错误时触发此函数。在调用此函数后'close'事件将会接着被调用。
+</p>
 
 <h3 id="event-close-233">Event: 'close'</h3>
 
@@ -7262,6 +7262,10 @@ following this event.</p>
 	class="sh_sourceCode">had_error</code> is a boolean which says if the
 stream was closed due to a transmission error.</p>
 
+<p class="goingmerry">
+流彻底关闭后触发此函数。'had_error'是一个布尔值参数，用来标识流是否因为传输发生错误。
+</p>
+
 <h3 id="net-createconnection-234">net.createConnection(port,
 host='127.0.0.1')</h3>
 
@@ -7269,8 +7273,16 @@ host='127.0.0.1')</h3>
 <code class="sh_sourceCode">port</code> and <code class="sh_sourceCode">host</code>.
 If the second parameter is omitted, localhost is assumed.</p>
 
+<p class="goingmerry">
+构造一个流对象并给指定的端口和主机打开一个流，如果第二个参数被省略了，那么默认为localhost。
+</p>
+
 <p>When the stream is established the <code class="sh_sourceCode"><span
 	class="sh_string">'connect'</span></code> event will be emitted.</p>
+	
+<p class="goingmerry">
+当流连接建立后触发'connect'事件。
+</p>
 
 <h3 id="stream-connect-235">stream.connect(port, host='127.0.0.1')</h3>
 
@@ -7281,6 +7293,10 @@ also opens a stream; normally this method is not needed. Use this only
 if a stream is closed and you want to reuse the object to connect to
 another server.</p>
 
+<p class="goingmerry">
+给指定的端口和主机打开一个流连接。'createConnection()'方法也可以打开一个流连接，所以我们通常不使用这个方法，通常在以下情况需要考虑使用，在流被关闭后你依然希望重新使用这个对象连接到其它的服务器。
+</p>
+
 <p>This function is asynchronous. When the <code
 	class="sh_sourceCode"><span class="sh_string">'connect'</span></code>
 event is emitted the stream is established. If there is a problem
@@ -7289,11 +7305,19 @@ connecting, the <code class="sh_sourceCode"><span
 	class="sh_sourceCode"><span class="sh_string">'error'</span></code>
 event will be emitted with the exception.</p>
 
+<p class="goingmerry">
+这个方法是异步的。当流建立时'connect'事件被触发。如果这个连接出现问题，那么'connect'事件不会被触发，而'error'事件会被触发。
+</p>
+
 <h3 id="stream-remoteaddress-236">stream.remoteAddress</h3>
 
 <p>The string representation of the remote IP address. For example,
 <code class="sh_sourceCode"><span class="sh_string">'74.125.127.100'</span></code>
 or <code class="sh_sourceCode"><span class="sh_string">'2001:4860:a005::68'</span></code>.</p>
+
+<p class="goingmerry">
+这个字符串代表着远程计算机的IP地址。例如'74.125.127.100' 或是'2001:4860:a005::68'。
+</p>
 
 <p>This member is only present in server-side connections.</p>
 
@@ -7305,12 +7329,20 @@ or <code class="sh_sourceCode"><span class="sh_string">'2001:4860:a005::68'</spa
 <code class="sh_sourceCode"><span class="sh_string">'readOnly'</span></code>,
 or <code class="sh_sourceCode"><span class="sh_string">'writeOnly'</span></code>.</p>
 
+<p class="goingmerry">
+表示流的状态，可以是关闭(closed)、已打开(open)、正在打开(opening)、只读(readOnly)或只写(writeOnly)
+</p>
+
 <h3 id="stream-setencoding-238">stream.setEncoding(encoding=null)</h3>
 
 <p>Sets the encoding (either <code class="sh_sourceCode"><span
 	class="sh_string">'ascii'</span></code>, <code class="sh_sourceCode"><span
 	class="sh_string">'utf8'</span></code>, or <code class="sh_sourceCode"><span
 	class="sh_string">'base64'</span></code>) for data that is received.</p>
+	
+<p class="goingmerry">
+为接收到的数据设置编码（可设置'ascii'、'utf8'或'base64'中的一种）。
+</p>
 
 <h3 id="stream-setsecure-239">stream.setSecure([credentials])</h3>
 
@@ -7318,10 +7350,20 @@ or <code class="sh_sourceCode"><span class="sh_string">'writeOnly'</span></code>
 credentials specifying the private key and certificate of the stream,
 and optionally the CA certificates for use in peer authentication.</p>
 
+<p class="goingmerry">
+XXX 
+使用加密模块指定的私钥和流证书为流提供SSL支持，并且可以选择对等身份验证使用的CA证书。
+</p>
+
 <p>If the credentials hold one ore more CA certificates, then the
 stream will request for the peer to submit a client certificate as part
 of the SSL connection handshake. The validity and content of this can be
 accessed via verifyPeer() and getPeerCertificate().</p>
+
+<p class="goingmerry">
+如果凭证持有一个或多个CA证书，那么流将会请求对等端提供一个客户端的证书做为SSL连接握手的一部分。
+可以通过'verifyPeer()'和'getPeerCertificate()'这两个方法来验证证书的合法性及证书的内容。
+</p>
 
 <h3 id="stream-verifypeer-240">stream.verifyPeer()</h3>
 
@@ -7329,17 +7371,30 @@ accessed via verifyPeer() and getPeerCertificate().</p>
 certificate in the context of the defined or default list of trusted CA
 certificates.</p>
 
+<p class="goingmerry">
+XXX 这里的这个peers这个词翻译不是很准确。
+如果对等端安全证书在上下文或默认CA证书列表中能过验证，那么返加true,否则返回false。
+</p>
+
 <h3 id="stream-getpeercertificate-241">stream.getPeerCertificate()</h3>
 
 <p>Returns a JSON structure detailing the peer's certificate,
 containing a dictionary with keys for the certificate 'subject',
 'issuer', 'valid_from' and 'valid_to'</p>
 
+<p class="goingmerry">
+返回一个JOSN结构的数据对象，用于描述对等端证书，包含了主题（subject），发行者（issuer），有效来源（valid_from）和有效目标（valid_to）。
+</p>
+
 <h3 id="stream-write-242">stream.write(data, encoding='ascii')</h3>
 
 <p>Sends data on the stream. The second parameter specifies the
 encoding in the case of a string--it defaults to ASCII because encoding
 to UTF8 is rather slow.</p>
+
+<p class="goingmerry">
+通过流发送数据。第二个参数指定了这个字符串的编码，默认情况下为'ASCII',因为'utf8'编码很慢。
+</p>
 
 <p>Returns <code class="sh_sourceCode"><span
 	class="sh_keyword">true</span></code> if the entire data was flushed
@@ -7349,12 +7404,20 @@ in user memory. <code class="sh_sourceCode"><span
 	class="sh_string">'drain'</span></code> will be emitted when the buffer is
 again free.</p>
 
+<p class="goingmerry">
+如果把所有的数据成功地写入到内核缓冲区，那么返回true。如果有部分数据还在用户内存队列里，那么将返回false。当缓冲区空闲的时候将会触发'drain'事件。
+</p>
+
 <h3 id="stream-end-243">stream.end([data], [encoding])</h3>
 
 <p>Half-closes the stream. I.E., it sends a FIN packet. It is
 possible the server will still send some data. After calling this <code
 	class="sh_sourceCode">readyState</code> will be <code
 	class="sh_sourceCode"><span class="sh_string">'readOnly'</span></code>.</p>
+	
+<p class="goingmerry">
+半关闭该流。即，它发送一个FIN包。这可能是因为服务器仍然需要发送一些数据。调用此函数后'readyState'将变为'readOnly'。
+</p>
 
 <p>If <code class="sh_sourceCode">data</code> is specified, it is
 equivalent to calling <code class="sh_sourceCode">stream<span
@@ -7363,11 +7426,19 @@ equivalent to calling <code class="sh_sourceCode">stream<span
 	class="sh_symbol">)</span></code> followed by <code class="sh_sourceCode">stream<span
 	class="sh_symbol">.</span><span class="sh_function">end</span><span
 	class="sh_symbol">()</span></code>.</p>
+	
+<p class="goingmerry">
+如果指定了'data'参数，那么等价于调用'stream.write(data, encoding)'接着调用'stream.end()'。
+</p>
 
 <h3 id="stream-destroy-244">stream.destroy()</h3>
 
 <p>Ensures that no more I/O activity happens on this stream. Only
 necessary in case of errors (parse error or so).</p>
+
+<p class="goingmerry">
+确保流上没有I／O活动。仅仅在出现错误的时候才使用（分析错误）。
+</p>
 
 <h3 id="stream-pause-245">stream.pause()</h3>
 
@@ -7375,10 +7446,18 @@ necessary in case of errors (parse error or so).</p>
 	class="sh_string">'data'</span></code> events will not be emitted. Useful to
 throttle back an upload.</p>
 
+<p class="goingmerry">
+暂停读取数据。也就是说，'data'事件不会被触发。通常用来控制上传。
+</p>
+
 <h3 id="stream-resume-246">stream.resume()</h3>
 
 <p>Resumes reading after a call to <code class="sh_sourceCode"><span
 	class="sh_function">pause</span><span class="sh_symbol">()</span></code>.</p>
+
+<p class="goingmerry">
+恢复读取数据。通常用于'pause()'方法之后进行恢复数据读取。
+</p>
 
 <h3 id="stream-settimeout-247">stream.setTimeout(timeout)</h3>
 
@@ -7386,6 +7465,10 @@ throttle back an upload.</p>
 milliseconds of inactivity on the stream. By default <code
 	class="sh_sourceCode">net<span class="sh_symbol">.</span>Stream</code>
 do not have a timeout.</p>
+
+<p class="goingmerry">
+给流设置一下超时时间，'timeout'参数可以设置多少毫秒后流将停止活动。默认情况下'net.Stream'是没有超时时间的。
+</p>
 
 <p>When an idle timeout is triggered the stream will receive a <code
 	class="sh_sourceCode"><span class="sh_string">'timeout'</span></code>
@@ -7395,8 +7478,16 @@ event but the connection will not be severed. The user must manually <code
 	class="sh_function">destroy</span><span class="sh_symbol">()</span></code> the
 stream.</p>
 
+<p class="goingmerry">
+当一个空间的超时被触发，流就会接收到一个'timeout'事件，但是连接并不会关闭。用户必须手动使用'end()'或'destroy()'结束流。
+</p>
+
 <p>If <code class="sh_sourceCode">timeout</code> is 0, then the
 existing idle timeout is disabled.</p>
+
+<p class="goingmerry">
+如果'timeout'设置为0，那么这个超时将被禁用。
+</p>
 
 <h3 id="stream-setnodelay-248">stream.setNoDelay(noDelay=true)</h3>
 
@@ -7407,6 +7498,10 @@ each time <code class="sh_sourceCode">stream<span
 	class="sh_symbol">.</span><span class="sh_function">write</span><span
 	class="sh_symbol">()</span></code> is called.</p>
 
+<p class="goingmerry">
+禁用Nagle算法。默认的TCP连接使用的是Nagle算法，它们在发送数据之前先缓冲数据。设置'noDelay'参数将在每次调用stream.write()时立刻将数据发出。
+</p>
+
 <h3 id="stream-setkeepalive-249">stream.setKeepAlive(enable=false,
 [initialDelay])</h3>
 
@@ -7416,6 +7511,11 @@ stream. Set <code class="sh_sourceCode">initialDelay</code> (in
 milliseconds) to set the delay between the last data packet received and
 the first keepalive probe. Setting 0 for initialDelay will leave the
 value unchanged from the default (or previous) setting.</p>
+
+<p class="goingmerry">
+长连接功能开关。可选参数'initalDelay'设置初始延迟时间，当一个空闲的流接收到第一个keepalive探测之前使用'initialDelay(inmilliseconds)'设置延迟。
+使用'initialDelay(inmillisecods)'方法可以设定收到最后一个数据包与第一个keepalive探测之间的延迟时间。
+</p>
 
 <h2 id="crypto-250">Crypto</h2>
 
