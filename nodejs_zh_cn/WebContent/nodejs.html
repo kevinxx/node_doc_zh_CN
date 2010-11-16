@@ -7829,9 +7829,16 @@ for the data and public key.</p>
 	class="sh_symbol">(</span><span class="sh_string">'dns'</span><span
 	class="sh_symbol">)</span></code> to access this module.</p>
 
+<p class="goingmerry">使用 <code class="sh_sourceCode"><span class="sh_function">require</span><span
+	class="sh_symbol">(</span><span class="sh_string">'dns'</span><span
+	class="sh_symbol">)</span></code> 来加入此模块.</p>
+
 <p>Here is an example which resolves <code class="sh_sourceCode"><span
 	class="sh_string">'www.google.com'</span></code> then reverse resolves the IP
 addresses which are returned.</p>
+
+<p class="goingmerry">下面是一个解析 <code class="sh_sourceCode"><span
+	class="sh_string">'www.google.com'</span></code> 然后反向解析其IP地址的例子.</p>
 
 <pre class="sh_sourceCode"><code class="sh_sourceCode"><span
 	class="sh_keyword"><span class="sh_keyword">var</span></span> dns <span
@@ -7926,6 +7933,9 @@ dns<span class="sh_symbol"><span class="sh_symbol">.</span></span><span
 	class="sh_string">'google.com'</span></code>) into the first found A (IPv4) or
 AAAA (IPv6) record.</p>
 
+<p class="goingmerry">解析一个域名(例如 <code class="sh_sourceCode"><span
+	class="sh_string">'google.com'</span></code>), 获取其第一个 A记录(IPv4)或AAAA记录(IPv6).</p>
+
 <p>The callback has arguments <code class="sh_sourceCode"><span
 	class="sh_symbol">(</span>err<span class="sh_symbol">,</span> address<span
 	class="sh_symbol">,</span> family<span class="sh_symbol">)</span></code>. The
@@ -7934,6 +7944,13 @@ representation of a IP v4 or v6 address. The <code class="sh_sourceCode">family<
 argument is either the integer 4 or 6 and denotes the family of <code
 	class="sh_sourceCode">address</code> (not neccessarily the value
 initially passed to <code class="sh_sourceCode">lookup</code>).</p>
+
+<p class="goingmerry">回调函数参数包括 <code class="sh_sourceCode"><span
+	class="sh_symbol">(</span>err<span class="sh_symbol">,</span> address<span
+	class="sh_symbol">,</span> family<span class="sh_symbol">)</span></code>. 其中 
+<code class="sh_sourceCode">address</code> 为IP v4或IP v6地址的字符串. <code class="sh_sourceCode">family</code>
+用于标识<code class="sh_sourceCode">address</code> 的族(family), 其取值为整数4或6 (
+不一定是调用 <code class="sh_sourceCode">lookup</code> 时传入的family参数).</p>
 
 <h3 id="dns-resolve-272">dns.resolve(domain, rrtype='A', callback)</h3>
 
@@ -7946,12 +7963,25 @@ records), <code class="sh_sourceCode">TXT</code> (text records), <code
 	class="sh_sourceCode">SRV</code> (SRV records), and <code
 	class="sh_sourceCode">PTR</code> (used for reverse IP lookups).</p>
 
+<p class="goingmerry">按照给出的记录类型(rrtype)解析一个域名(例如 <code class="sh_sourceCode"><span
+	class="sh_string">'google.com'</span></code>)到一个数组. 可选的rrtypes包含<code class="sh_sourceCode">A</code>
+(IPV4地址), <code class="sh_sourceCode">AAAA</code> (IPV6地址), 
+<code class="sh_sourceCode">MX</code> (邮件交换记录), <code class="sh_sourceCode">TXT</code> (文本记录), <code
+	class="sh_sourceCode">SRV</code> (SRV记录), 和 <code
+	class="sh_sourceCode">PTR</code> (用于反向IP查找).</p>
+
 <p>The callback has arguments <code class="sh_sourceCode"><span
 	class="sh_symbol">(</span>err<span class="sh_symbol">,</span> addresses<span
 	class="sh_symbol">)</span></code>. The type of each item in <code
 	class="sh_sourceCode">addresses</code> is determined by the record
 type, and described in the documentation for the corresponding lookup
 methods below.</p>
+
+<p class="goingmerry">回调函数参数包含 <code class="sh_sourceCode"><span
+	class="sh_symbol">(</span>err<span class="sh_symbol">,</span> addresses<span
+	class="sh_symbol">)</span></code>. <code
+	class="sh_sourceCode">addresses</code>中包含的属性取决于指定的记录类型, 
+	相关的描述将写在相应的域名查询(lookup)方法文档中.</p>
 
 <p>On error, <code class="sh_sourceCode">err</code> would be an
 instanceof <code class="sh_sourceCode"><span
@@ -7960,6 +7990,13 @@ instanceof <code class="sh_sourceCode"><span
 is one of the error codes listed below and <code class="sh_sourceCode">err<span
 	class="sh_symbol">.</span>message</code> is a string describing the error in
 English.</p>
+
+<p class="goingmerry">当发生错误时, <code class="sh_sourceCode">err</code> 将会是一个
+ <code class="sh_sourceCode"><span
+	class="sh_predef_func">Error</span></code>的实例, <code
+	class="sh_sourceCode">err<span class="sh_symbol">.</span>errno</code>
+的取值是章节底部错误码列表中的一个, 而 <code class="sh_sourceCode">err<span
+	class="sh_symbol">.</span>message</code> 则是对错误的英文描述.</p>
 
 <h3 id="dns-resolve4-273">dns.resolve4(domain, callback)</h3>
 
@@ -7973,12 +8010,27 @@ is an array of IPv4 addresses (e.g.<br>
 <span class="sh_string">'74.125.79.105'</span><span class="sh_symbol">,</span>
 <span class="sh_string">'74.125.79.106'</span><span class="sh_symbol">]</span></code>).</p>
 
+<p class="goingmerry">与 <code class="sh_sourceCode">dns<span
+	class="sh_symbol">.</span><span class="sh_function">resolve</span><span
+	class="sh_symbol">()</span></code> 相同, 但仅进行IPv4查询 (<code
+	class="sh_sourceCode">A</code> 记录). <code class="sh_sourceCode">addresses</code>
+是一个IPv4的地址数组 (例如<br>
+<code class="sh_sourceCode"><span class="sh_symbol">[</span><span
+	class="sh_string">'74.125.79.104'</span><span class="sh_symbol">,</span>
+<span class="sh_string">'74.125.79.105'</span><span class="sh_symbol">,</span>
+<span class="sh_string">'74.125.79.106'</span><span class="sh_symbol">]</span></code>).</p>
+
 <h3 id="dns-resolve6-274">dns.resolve6(domain, callback)</h3>
 
 <p>The same as <code class="sh_sourceCode">dns<span
 	class="sh_symbol">.</span><span class="sh_function">resolve4</span><span
 	class="sh_symbol">()</span></code> except for IPv6 queries (an <code
 	class="sh_sourceCode">AAAA</code> query).</p>
+
+<p class="goingmerry">与 <code class="sh_sourceCode">dns<span
+	class="sh_symbol">.</span><span class="sh_function">resolve4</span><span
+	class="sh_symbol">()</span></code>相同, 但仅进行IPv6查询(一个<code
+	class="sh_sourceCode">AAAA</code> 记录查询).</p>
 
 <h3 id="dns-resolvemx-275">dns.resolveMx(domain, callback)</h3>
 
@@ -7987,8 +8039,22 @@ is an array of IPv4 addresses (e.g.<br>
 	class="sh_symbol">()</span></code>, but only for mail exchange queries (<code
 	class="sh_sourceCode">MX</code> records).</p>
 
+<p class="goingmerry">与<code class="sh_sourceCode">dns<span
+	class="sh_symbol">.</span><span class="sh_function">resolve</span><span
+	class="sh_symbol">()</span></code>相同, 但仅进行邮件交换查询 (<code
+	class="sh_sourceCode">MX</code> 记录).</p>
+
 <p><code class="sh_sourceCode">addresses</code> is an array of MX
 records, each with a priority and an exchange attribute (e.g. <code
+	class="sh_sourceCode"><span class="sh_symbol">[</span><span
+	class="sh_cbracket">{</span><span class="sh_string">'priority'</span><span
+	class="sh_symbol">:</span> <span class="sh_number">10</span><span
+	class="sh_symbol">,</span> <span class="sh_string">'exchange'</span><span
+	class="sh_symbol">:</span> <span class="sh_string">'mx.example.com'</span><span
+	class="sh_cbracket">}</span><span class="sh_symbol">,...]</span></code>).</p>
+
+<p class="goingmerry"><code class="sh_sourceCode">addresses</code> 是一个包含多个MX
+记录的数组, 每个数组元素包括一个priority和一个exchange属性 (例如 <code
 	class="sh_sourceCode"><span class="sh_symbol">[</span><span
 	class="sh_cbracket">{</span><span class="sh_string">'priority'</span><span
 	class="sh_symbol">:</span> <span class="sh_number">10</span><span
@@ -8004,6 +8070,15 @@ records, each with a priority and an exchange attribute (e.g. <code
 	class="sh_sourceCode">TXT</code> records). <code class="sh_sourceCode">addresses</code>
 is an array of the text records available for <code
 	class="sh_sourceCode">domain</code> (e.g., <code class="sh_sourceCode"><span
+	class="sh_symbol">[</span><span class="sh_string">'v=spf1
+ip4:0.0.0.0 ~all'</span><span class="sh_symbol">]</span></code>).</p>
+
+<p class="goingmerry">与<code class="sh_sourceCode">dns<span
+	class="sh_symbol">.</span><span class="sh_function">resolve</span><span
+	class="sh_symbol">()</span></code>相同, 但仅执行文本查询 (<code
+	class="sh_sourceCode">TXT</code> 记录). <code class="sh_sourceCode">addresses</code>
+是一个包含所有<code
+	class="sh_sourceCode">domain</code>下可用的文本记录的数组  (例如, <code class="sh_sourceCode"><span
 	class="sh_symbol">[</span><span class="sh_string">'v=spf1
 ip4:0.0.0.0 ~all'</span><span class="sh_symbol">]</span></code>).</p>
 
@@ -8027,18 +8102,46 @@ Properties of SRV records are priority, weight, port, and name (e.g., <code
 	class="sh_string">'service.example.com'</span><span class="sh_cbracket">}</span><span
 	class="sh_symbol">,</span> <span class="sh_symbol">...]</span></code>).</p>
 
+<p class="goingmerry">与 <code class="sh_sourceCode">dns<span
+	class="sh_symbol">.</span><span class="sh_function">resolve</span><span
+	class="sh_symbol">()</span></code>相同, 但仅查询服务记录 (<code
+	class="sh_sourceCode">SRV</code> 记录). <code class="sh_sourceCode">addresses</code>
+是一个包含<code class="sh_sourceCode">domain</code>下所有可用SRV记录的数组.
+SRV记录包含priority, weight, port, 和name属性 (例如, <code
+	class="sh_sourceCode"><span class="sh_symbol">[</span><span
+	class="sh_cbracket">{</span><span class="sh_string">'priority'</span><span
+	class="sh_symbol">:</span> <span class="sh_number">10</span><span
+	class="sh_symbol">,</span> <span class="sh_cbracket">{</span><span
+	class="sh_string">'weight'</span><span class="sh_symbol">:</span> <span
+	class="sh_number">5</span><span class="sh_symbol">,</span> <span
+	class="sh_string">'port'</span><span class="sh_symbol">:</span> <span
+	class="sh_number">21223</span><span class="sh_symbol">,</span> <span
+	class="sh_string">'name'</span><span class="sh_symbol">:</span> <span
+	class="sh_string">'service.example.com'</span><span class="sh_cbracket">}</span><span
+	class="sh_symbol">,</span> <span class="sh_symbol">...]</span></code>).</p>
+
 <h3 id="dns-reverse-278">dns.reverse(ip, callback)</h3>
 
 <p>Reverse resolves an ip address to an array of domain names.</p>
 
+<p class="goingmerry">反向查询一个IP地址并将包含所有域名结果的数组传给回调函数.</p>
+
 <p>The callback has arguments <code class="sh_sourceCode"><span
+	class="sh_symbol">(</span>err<span class="sh_symbol">,</span> domains<span
+	class="sh_symbol">)</span></code>.</p>
+
+<p class="goingmerry">回调函数包含参数 <code class="sh_sourceCode"><span
 	class="sh_symbol">(</span>err<span class="sh_symbol">,</span> domains<span
 	class="sh_symbol">)</span></code>.</p>
 
 <p>If there an an error, <code class="sh_sourceCode">err</code> will
 be non-null and an instanceof the Error object.</p>
 
+<p class="goingmerry">如果发生了错误, <code class="sh_sourceCode">err</code> 将是一个不为null的Error实例.</p>
+
 <p>Each DNS query can return an error code.</p>
+
+<p class="goingmerry">任何的DNS查询都可能返回错误代码.</p>
 
 <ul>
 	<li><code class="sh_sourceCode">dns<span class="sh_symbol">.</span>TEMPFAIL</code>:
@@ -8053,6 +8156,21 @@ be non-null and an instanceof the Error object.</p>
 	out of memory while processing.</li>
 	<li><code class="sh_sourceCode">dns<span class="sh_symbol">.</span>BADQUERY</code>:
 	the query is malformed.</li>
+</ul>
+
+<ul class="goingmerry">
+	<li><code class="sh_sourceCode">dns<span class="sh_symbol">.</span>TEMPFAIL</code>:
+	超时, SERVFAIL或类似错误.</li>
+	<li><code class="sh_sourceCode">dns<span class="sh_symbol">.</span>PROTOCOL</code>:
+	收到了被篡改的回复.</li>
+	<li><code class="sh_sourceCode">dns<span class="sh_symbol">.</span>NXDOMAIN</code>:
+	域名不存在.</li>
+	<li><code class="sh_sourceCode">dns<span class="sh_symbol">.</span>NODATA</code>:
+	域名存在但没有必须类型的数据(no data of reqd type, [what the fuck?]).</li>
+	<li><code class="sh_sourceCode">dns<span class="sh_symbol">.</span>NOMEM</code>:
+	处理过程中内存溢出.</li>
+	<li><code class="sh_sourceCode">dns<span class="sh_symbol">.</span>BADQUERY</code>:
+	查询格式错误.</li>
 </ul>
 
 <h2 id="dgram-279">dgram</h2>
