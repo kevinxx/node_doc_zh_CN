@@ -7517,41 +7517,79 @@ value unchanged from the default (or previous) setting.</p>
 使用'initialDelay(inmillisecods)'方法可以设定收到最后一个数据包与第一个keepalive探测之间的延迟时间。
 </p>
 
-<h2 id="crypto-250">Crypto</h2>
+<h2 id="crypto-250">Crypto -- 加密模块</h2>
 
 <p>Use <code class="sh_sourceCode"><span class="sh_function">require</span><span
 	class="sh_symbol">(</span><span class="sh_string">'crypto'</span><span
 	class="sh_symbol">)</span></code> to access this module.</p>
 
+<p class="goingmerry">
+可以通过require('crypto')来访问此模块。
+</p>
+
 <p>The crypto module requires OpenSSL to be available on the
 underlying platform. It offers a way of encapsulating secure credentials
 to be used as part of a secure HTTPS net or http connection.</p>
 
+<p class="goingmerry">
+该模块为使用安全证书实现HTTPS安全网络以及HTTP连接提供了支持。
+
+'crypto'模块需要所在的平台支持OpenSSL协议。'crypto'模块是一种安全认证方式的封装，通常用做安全HTTPS或HTTP连接的一部分。
+</p>
+
 <p>It also offers a set of wrappers for OpenSSL's hash, hmac,
 cipher, decipher, sign and verify methods.</p>
+
+<p class="goingmerry">
+它还提供了对OpenSSL操作的一些方法，如哈希(hash)，HMAC的包装器(hmac)，加密(cipher)，解密(decipher)，签名(sign)和验证(verify)。
+</p>
 
 <h3 id="crypto-createcredentials-251">crypto.createCredentials(details)</h3>
 
 <p>Creates a credentials object, with the optional details being a
 dictionary with keys:</p>
 
+<p class="goingmerry">
+创建一个证书对象，可选参数是一个字典对象，拥有如下键名：
+</p>
+
 <p><code class="sh_sourceCode">key</code> : a string holding the PEM
 encoded private key</p>
+
+<p class="goingmerry">
+key: 一个包含PEM编码的私钥的字符串。
+</p>
 
 <p><code class="sh_sourceCode">cert</code> : a string holding the
 PEM encoded certificate</p>
 
+<p class="goingmerry">
+cert: 一个包含PEM编码证书的字符串。
+</p>
+
 <p><code class="sh_sourceCode">ca</code> : either a string or list
 of strings of PEM encoded CA certificates to trust.</p>
+
+<p class="goingmerry">
+ca: 一个可信任的包含PEM编码的CA证书字符串或者字符串列表。
+</p>
 
 <p>If no 'ca' details are given, then node.js will use the default
 publicly trusted list of CAs as given in
 http://mxr.mozilla.org/mozilla/source/security/nss/lib/ckfw/builtins/certdata.txt</p>
 
+<p class="goingmerry">
+如要'ca'没有给出，那么Node.js将会使用默认公共的CA证书列表
+</p>
+
 <h3 id="crypto-createhash-252">crypto.createHash(algorithm)</h3>
 
 <p>Creates and returns a hash object, a cryptographic hash with the
 given algorithm which can be used to generate hash digests.</p>
+
+<p class="goingmerry">
+创建并返回一个哈希对象，通过'algorithm'参数指定生成哈希摘要的算法。
+</p>
 
 <p><code class="sh_sourceCode">algorithm</code> is dependent on the
 available algorithms supported by the version of OpenSSL on the
@@ -7561,11 +7599,20 @@ releases, <code class="sh_sourceCode">openssl list<span
 	class="sh_symbol">-</span>algorithms</code> will display the available digest
 algorithms.</p>
 
+<p class="goingmerry">
+'algorithm'参数依赖于运行平台上OpenSSL版本所支持的算法，例如sha1, md5, sha256, sha512等最新版本。
+openssl消息算法摘要（openssl list-message-digest-algorithms）将显示有效的算法摘要。
+</p>
+
 <h3 id="hash-update-253">hash.update(data)</h3>
 
 <p>Updates the hash content with the given <code
 	class="sh_sourceCode">data</code>. This can be called many times with
 new data as it is streamed.</p>
+
+<p class="goingmerry">
+更新给定'data'的哈希内容。当以流的方式接收新数据时，可以多次调用此方法。
+</p>
 
 <h3 id="hash-digest-254">hash.digest(encoding='binary')</h3>
 
@@ -7573,14 +7620,26 @@ new data as it is streamed.</p>
 <code class="sh_sourceCode">encoding</code> can be 'hex', 'binary' or
 'base64'.</p>
 
+<p class="goingmerry">
+将所有传递过来的数据转化为哈希摘要。'encoding'参数可以指定转化的编码，可以是'hex','binary'或是'base64'。
+</p>
+
 <h3 id="crypto-createhmac-255">crypto.createHmac(algorithm, key)</h3>
 
 <p>Creates and returns a hmac object, a cryptographic hmac with the
 given algorithm and key.</p>
 
+<p class="goingmerry">
+可以使用算法（algorithm）和密钥(key)创建一个加密的HMAC（消息认证码）对象并返回。
+</p>
+
 <p><code class="sh_sourceCode">algorithm</code> is dependent on the
 available algorithms supported by OpenSSL - see createHash above. <code
 	class="sh_sourceCode">key</code> is the hmac key to be used.</p>
+	
+<p class="goingmerry">
+'algorithm'参数依赖于运行平台上OpenSSL版本所支持的算法，详细请看上面的'createHash'方法。'key'参数是hmac密钥。
+</p>
 
 <h3 id="hmac-update-256">hmac.update(data)</h3>
 
@@ -7588,11 +7647,19 @@ available algorithms supported by OpenSSL - see createHash above. <code
 	class="sh_sourceCode">data</code>. This can be called many times with
 new data as it is streamed.</p>
 
+<p class="goingmerry">
+更新给定'data'的hmac内容。当以流的方式接收新数据时，可以多次调用此方法。
+</p>
+
 <h3 id="hmac-digest-257">hmac.digest(encoding='binary')</h3>
 
 <p>Calculates the digest of all of the passed data to the hmac. The
 <code class="sh_sourceCode">encoding</code> can be 'hex', 'binary' or
 'base64'.</p>
+
+<p class="goingmerry">
+将所有传递过来的数据转化为hmac摘要。'encoding'参数可以指定转化的编码，可以是'hex','binary'或是'base64'。
+</p>
 
 <h3 id="crypto-createcipher-258">crypto.createCipher(algorithm,
 key)</h3>
@@ -7600,11 +7667,20 @@ key)</h3>
 <p>Creates and returns a cipher object, with the given algorithm and
 key.</p>
 
+<p class="goingmerry">
+根据给定的'algorithm'和'key'创建并返回一个cipher对象。
+</p>
+
 <p><code class="sh_sourceCode">algorithm</code> is dependent on
 OpenSSL, examples are aes192, etc. On recent releases, <code
 	class="sh_sourceCode">openssl list<span class="sh_symbol">-</span>cipher<span
 	class="sh_symbol">-</span>algorithms</code> will display the available cipher
 algorithms.</p>
+
+<p class="goingmerry">
+algorithm'参数依赖于运行平台上OpenSSL版本所支持的算法，例如aes192等最新版本。
+openssl list-cipher-algorithms将显示有效的cipher算法。
+</p>
 
 <h3 id="cipher-update-259">cipher.update(data,
 input_encoding='binary', output_encoding='binary')</h3>
@@ -7615,8 +7691,17 @@ and can be 'utf8', 'ascii' or 'binary'. The <code class="sh_sourceCode">output_e
 specifies the output format of the enciphered data, and can be 'binary',
 'base64' or 'hex'.</p>
 
+<p class="goingmerry">
+按'data'更新的cipher内容。'input_encoding'参数指初始数据编码，可以为'utf8', 'ascii'或'binary'。
+'output_encoding'参数指定加密数据的输出格式，可以为'binary', 'base64'或'hex'。
+</p>
+
 <p>Returns the enciphered contents, and can be called many times
 with new data as it is streamed.</p>
+
+<p class="goingmerry">
+返回加密的内容。当以流的方式接收新数据时，可以多次调用此方法。
+</p>
 
 <h3 id="cipher-final-260">cipher.final(output_encoding='binary')</h3>
 
@@ -7624,11 +7709,19 @@ with new data as it is streamed.</p>
 	class="sh_sourceCode">output_encoding</code> being one of: 'binary',
 'ascii' or 'utf8'.</p>
 
+<p class="goingmerry">
+返回剩下的加密内容，'output_encoding'参数值可以是'binary', 'ascii'或'utf8'中的一个。
+</p>
+
 <h3 id="crypto-createdecipher-261">crypto.createDecipher(algorithm,
 key)</h3>
 
 <p>Creates and returns a decipher object, with the given algorithm
 and key. This is the mirror of the cipher object above.</p>
+
+<p class="goingmerry">
+按给定的'algorithm'和'key'创建并返回一个解密的对象。这个与上面的cipher对象是相对的。
+</p>
 
 <h3 id="decipher-update-262">decipher.update(data,
 input_encoding='binary', output_encoding='binary')</h3>
@@ -7638,10 +7731,19 @@ which is encoded in 'binary', 'base64' or 'hex'. The <code
 	class="sh_sourceCode">output_decoding</code> specifies in what format
 to return the deciphered plaintext - either 'binary', 'ascii' or 'utf8'.</p>
 
+<p class="goingmerry">
+按'data'更新decipher内容。'input_encoding'参数指初始数据编码，可以为'binary', 'ascii'或'hex'。
+'output_encoding'参数指定解密明文的输出格式，可以为'binary', 'ascii'或'utf8'。
+</p>
+
 <h3 id="decipher-final-263">decipher.final(output_encoding='binary')</h3>
 
 <p>Returns any remaining plaintext which is deciphered, with
 `output_encoding' being one of: 'binary', 'ascii' or 'utf8'.</p>
+
+<p class="goingmerry">
+返回剩下的解密明文内容，'output_encoding'参数值可以是'binary', 'ascii'或'utf8'中的一个。
+</p>
 
 <h3 id="crypto-createsign-264">crypto.createSign(algorithm)</h3>
 
@@ -7652,10 +7754,18 @@ list<span class="sh_symbol">-</span><span class="sh_keyword">public</span><span
 will display the available signing algorithms. Examples are
 'RSA-SHA256'.</p>
 
+<p class="goingmerry">
+按给定的算法创建并返回signing对象。根据最近发布的OpenSSL，openssl的公共密钥算法列表将显示可用的签名算法。例如'RSA-SHA256'。
+</p>
+
 <h3 id="signer-update-265">signer.update(data)</h3>
 
 <p>Updates the signer object with data. This can be called many
 times with new data as it is streamed.</p>
+
+<p class="goingmerry">]
+按'data'更新的signer对象内容。当以流的方式接收新数据时，可以多次调用此方法。
+</p>
 
 <h3 id="signer-sign-266">signer.sign(private_key,
 output_format='binary')</h3>
@@ -7664,18 +7774,34 @@ output_format='binary')</h3>
 the signer. <code class="sh_sourceCode">private_key</code> is a string
 containing the PEM encoded private key for signing.</p>
 
+<p class="goingmerry">
+计算所有通过signer完成更新数据的签名。'private_key'参数是一个用于签名的PEM编码私钥字符串。
+</p>
+
 <p>Returns the signature in <code class="sh_sourceCode">output_format</code>
 which can be 'binary', 'hex' or 'base64'</p>
+
+<p class="goingmerry">
+返回'output_format'参数指定编码的签名，'output_format'参数可以是'binary', 'hex' or 'base64'。
+</p>
 
 <h3 id="crypto-createverify-267">crypto.createVerify(algorithm)</h3>
 
 <p>Creates and returns a verification object, with the given
 algorithm. This is the mirror of the signing object above.</p>
 
+<p class="goingmerry">
+按给定的'algorithm'创建并返回一个验证对象。这个与上面的signing对象是相对的。
+</p>
+
 <h3 id="verifier-update-268">verifier.update(data)</h3>
 
 <p>Updates the verifyer object with data. This can be called many
 times with new data as it is streamed.</p>
+
+<p class="goingmerry">
+按'data'更新的verifyer对象内容。当以流的方式接收新数据时，可以多次调用此方法。
+</p>
 
 <h3 id="verifier-verify-269">verifier.verify(public_key, signature,
 signature_format='binary')</h3>
@@ -7686,8 +7812,16 @@ which is a string containing the PEM encoded public key, and <code
 calculates signature for the data, in the <code class="sh_sourceCode">signature_format</code>
 which can be 'binary', 'hex' or 'base64'.</p>
 
+<p class="goingmerry">
+使用'public_key'这个包含PEM编码的公钥来验证签名数据，'signature'是指先前的数据计算签名，'signature_format'参数可以是'binary', 'hex'或'base64'。
+</p>
+
 <p>Returns true or false depending on the validity of the signature
 for the data and public key.</p>
+
+<p class="goingmerry">
+根据数据和公钥来验证签名的有效性，如果有效则返回true,反之false。
+</p>
 
 <h2 id="dns-270">DNS</h2>
 
